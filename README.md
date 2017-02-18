@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Introduction
 
 [![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
@@ -642,3 +643,7 @@ You can follow the [Angular change log here](https://github.com/angular/angular/
 # License
 
 MIT
+=======
+# Dashboard
+Interactive Dashboard with Live Tracking
+>>>>>>> cf822561fb3f1d0e21a4bbf07a05074918ffcb58
