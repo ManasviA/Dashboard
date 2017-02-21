@@ -9,10 +9,12 @@ import { TopNavModule } from './topnav/topnav.module';
 import { SideBarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './footer/footer.module';
 import { SharedModule } from './shared/shared.module';
-import {LoginModule} from './login/login.module'
+import { MyHomeModule } from './myhome/myhome.module';
+import { LoginModule } from './login/login.module';
+
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, AppRoutingModule, SideBarModule, TopNavModule, FooterModule, LoginModule, SharedModule.forRoot()],
+  imports: [BrowserModule, HttpModule, AppRoutingModule, MyHomeModule, LoginModule, SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

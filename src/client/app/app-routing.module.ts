@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {AuthGuard} from './login/auth-guard.service'
+
+
+// [{ path: 'login', component: LoginComponent}
+//     ]
 
 @NgModule({
   imports: [
@@ -9,4 +12,3 @@ import {AuthGuard} from './login/auth-guard.service'
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-

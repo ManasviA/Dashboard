@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import {UnauthorizedComponent} from './unauthorized.component';
+import { RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './auth-guard.service';
-import {AdminComponent} from './admin.component';
-import {LoginComponent} from './login.component'
+import {AuthService} from './auth.service';
+import {LoginComponent} from './login.component';
+
+const loginRoutes: Routes = [
+  { path: 'login', component: LoginComponent }
+];
+
+// { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  // { path: 'dashboard', component: AdminComponent, canActivate: [AuthGuard] }
+  
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([{ path: 'login', component: LoginComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'unauthorized', component: UnauthorizedComponent }])
+    RouterModule.forChild(loginRoutes)
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AuthGuard,
+    AuthService
+  ]
 })
 export class LoginRoutingModule { }

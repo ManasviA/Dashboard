@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import {Router} from '@angular/router';
 
 interface Credentials {
   username: string,
@@ -10,13 +11,9 @@ interface Credentials {
 
 @Component({
   selector: 'login',
-  template: `
-    <form #f="ngForm" (ngSubmit)="onLogin(f.value)" *ngIf="!auth.loggedIn()">
-      <input type="text" placeholder="username" [(ngModel)]="username" name="username">
-      <input type="password" placeholder="password" [(ngModel)]="password" name="password">
-      <button type="submit">Submit</button>    
-    </form>
-  `
+  templateUrl: 'login.component.html',
+  moduleId: module.id,
+  styleUrls: ['login.component.css']
 })
 
 export class LoginComponent {
@@ -24,11 +21,20 @@ export class LoginComponent {
   credentials: Credentials;
   username:string;
   password:string;
+  message:string;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router:Router) {}
 
   onLogin(credentials:Credentials) {
+    this.message="Signing In..."
     credentials={username:this.username,password:this.password};
-    this.auth.login(credentials);
+    this.auth.login(credentials).subscribe(()=> {
+      if(this.auth.loggedIn()) {
+        let redirect=this.auth.redirectUrl ? this.auth.redirectUrl:'/user/dashboard';
+        this.router.navigate([redirect]); 
+      }
+    },error => {
+      this.message=error.error;
+    });
   }
 }
