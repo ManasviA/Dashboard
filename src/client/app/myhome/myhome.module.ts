@@ -9,11 +9,15 @@ import { TopNavModule } from '../topnav/topnav.module';
 import { SideBarModule } from '../sidebar/sidebar.module';
 import { FooterModule } from '../footer/footer.module';
 import { DashboardComponent} from '../dashboard/dashboard.component';
+import { DbGridComponent  } from '../dbgrid/dbgrid.component';
+import { DbColumnComponent } from '../dbgrid/dbcolumn.component';
+import {DbHeaderComponent} from '../dbgrid/dbheader.component';
+import {DbDetailComponent} from '../dbgrid/dbdetail.component';
 import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   imports: [BrowserModule, HttpModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
-  declarations: [MyHomeComponent,DashboardComponent],
+  declarations: [MyHomeComponent,DashboardComponent,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent],
   providers: [],
   bootstrap: [MyHomeComponent]
 

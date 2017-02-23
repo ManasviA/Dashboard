@@ -1,0 +1,32 @@
+<div class="dbgrid panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="tablerow">
+          <div *ngFor="let col of cols"  [ngClass]="['col','colheader',col.key]">
+            <db-header [col]="col"></db-header>
+          </div>
+        </div>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">Panel Body</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+    </div>
+  </div>
+<div class="dbgrid panel-group" *ngFor="let row of rows">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="tablerow">
+          <div *ngFor="let col of cols"  [ngClass]="['col',col.key]">
+            <db-column [col]="col" [data]="row"></db-column>
+          </div>
+        </div>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">
+          <db-detail [data]="row"></db-detail>
+        </div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+    </div>
+  </div>
