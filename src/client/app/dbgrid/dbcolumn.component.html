@@ -1,21 +1,22 @@
 <div>
     <div *ngIf="col.key=='lineStatus'">
-        Online
+        <span [ngClass]="[data.lineStatus,'glyphicon', 'glyphicon-cloud']" title="{{data.lineStatus}}"></span>
+        <div style="font-size:10px;">{{data.lineStatus}}</div>
     </div>
     <div *ngIf="col.key=='lastUpdated'">
-        2017-02-23 12:43:10 (GMT +5:30) 
+        {{data.lastUpdated}}
     </div>
     <div *ngIf="col.key=='groupName'">
-        Sneha Food TS 06, UB 4082 
+        {{data.groupName}}
     </div>
     <div *ngIf="col.key=='status'">
         Status
     </div>
     <div *ngIf="col.key=='vehicleNumber'">
-        Vehicle Number
+        {{data.vehicleNumber}}
     </div>
     <div *ngIf="col.key=='driver'">
-        Driver
+        {{data.driver}}
     </div>
     <div *ngIf="col.key=='location'">
          "Sawali Society"," Savitribai Phule Nagar"," Laxmi Naga"
@@ -24,7 +25,7 @@
         Checkpoint
     </div>
     <div *ngIf="col.key=='speed'">
-        60 km/h
+        {{data.speed}} km/h
     </div>
     <div *ngIf="col.key=='distance'">
         Distance

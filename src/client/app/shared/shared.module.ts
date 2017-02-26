@@ -7,6 +7,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NameListService } from './name-list/name-list.service';
 import {DataService} from './data/data.service';
+import {UserService} from './data/user.service';
+import  {AlertService} from './data/alert.service';
+import {AlertComponent} from './alert/alert.component'
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -14,15 +17,15 @@ import {DataService} from './data/data.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [ToolbarComponent, NavbarComponent],
-  exports: [ToolbarComponent, NavbarComponent,
+  declarations: [ToolbarComponent, NavbarComponent,AlertComponent],
+  exports: [ToolbarComponent, NavbarComponent,AlertComponent,
     CommonModule, FormsModule, RouterModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [NameListService,DataService]
+      providers: [NameListService,DataService,UserService,AlertService]
     };
   }
 }

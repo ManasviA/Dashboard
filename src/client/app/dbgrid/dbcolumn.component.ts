@@ -9,6 +9,7 @@ import { Column } from './dbgrid.component'
   moduleId: module.id,
   selector: 'db-column',
   templateUrl: 'dbcolumn.component.html',
+  styleUrls: ['dbgrid.component.css']
 })
 export class DbColumnComponent {
     @Input()

@@ -13,11 +13,13 @@ import { DbGridComponent  } from '../dbgrid/dbgrid.component';
 import { DbColumnComponent } from '../dbgrid/dbcolumn.component';
 import {DbHeaderComponent} from '../dbgrid/dbheader.component';
 import {DbDetailComponent} from '../dbgrid/dbdetail.component';
-import { SharedModule } from '../shared/shared.module'
+import { SharedModule } from '../shared/shared.module';
+import {Collapse} from '../dbgrid/collapse.component';
+import {RegisterComponent} from '../user/register.component';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
-  declarations: [MyHomeComponent,DashboardComponent,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent],
+  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent],
   providers: [],
   bootstrap: [MyHomeComponent]
 

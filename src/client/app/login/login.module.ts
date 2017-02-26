@@ -8,6 +8,7 @@ import { FormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import {SharedModule} from '../shared/shared.module';
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -15,7 +16,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 
 @NgModule({
-  imports:[LoginRoutingModule, FormsModule, BrowserModule, CommonModule],
+  imports:[LoginRoutingModule, FormsModule, BrowserModule, CommonModule, SharedModule.forRoot()],
   declarations: [LoginComponent],
   providers: [{
     provide: AuthHttp,

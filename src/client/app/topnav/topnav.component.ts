@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/name-list/name-list.service';
-
+import { UserService } from '../shared/data/user.service';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -11,20 +10,14 @@ import { NameListService } from '../shared/name-list/name-list.service';
 })
 export class TopNavComponent implements OnInit {
 
-  
-
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
-  constructor(public nameListService: NameListService) {}
+  private userName:string;
+  constructor(public userService: UserService) {}
 
   /**
    * Get the names OnInit
    */
   ngOnInit() {
+    this.userName=this.userService.getCurrentUser().user_detail.name;
   }
 
 }

@@ -5,6 +5,7 @@
           <div *ngFor="let col of cols"  [ngClass]="['col','colheader',col.key]">
             <db-header [col]="col"></db-header>
           </div>
+             <div [ngClass]="{'col':true,'gridrow-expand':true}"></div>
         </div>
       </div>
       <div id="collapse1" class="panel-collapse collapse">
@@ -13,20 +14,23 @@
       </div>
     </div>
   </div>
-<div class="dbgrid panel-group" *ngFor="let row of rows">
+<div class="dbgrid panel-group" *ngFor="let row of rows; let i = index;">
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="tablerow">
           <div *ngFor="let col of cols"  [ngClass]="['col',col.key]">
             <db-column [col]="col" [data]="row"></db-column>
           </div>
+          <div style="cursor:pointer" [ngClass]="{'col':true,'gridrow-expand':true, 'glyphicon':true, 'glyphicon-menu-down':!isExpanded(i), 'glyphicon-menu-up':isExpanded(i)}" 
+           (click)="expand(i)">
+           </div>
         </div>
       </div>
-      <div id="collapse1" class="panel-collapse collapse">
+      <div id="collapse1" class="panel-collapse" [collapse]="!isExpanded(i)">
         <div class="panel-body">
           <db-detail [data]="row"></db-detail>
         </div>
-        <div class="panel-footer">Panel Footer</div>
+        <!--<div class="panel-footer">Panel Footer</div>-->
       </div>
     </div>
   </div>

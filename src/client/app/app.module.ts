@@ -11,10 +11,15 @@ import { FooterModule } from './footer/footer.module';
 import { SharedModule } from './shared/shared.module';
 import { MyHomeModule } from './myhome/myhome.module';
 import { LoginModule } from './login/login.module';
+import {NgIdleModule} from '@ng-idle/core';
+import { MomentModule } from 'angular2-moment';
 
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, AppRoutingModule, MyHomeModule, LoginModule, SharedModule.forRoot()],
+  imports: [BrowserModule, HttpModule, AppRoutingModule, MyHomeModule, LoginModule, SharedModule.forRoot(),
+    MomentModule,
+    NgIdleModule.forRoot()
+],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

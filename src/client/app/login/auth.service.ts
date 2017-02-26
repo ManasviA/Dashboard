@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import {UserService} from '../shared/data/user.service';
+import {AlertService} from '../shared/data/alert.service'
 
 
 @Injectable()
@@ -15,7 +17,7 @@ export class AuthService {
 
   redirectUrl: string;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http,private userService:UserService,private alertService:AlertService) {}
 
   login(credentials:any) {
     return this.http.post('http://localhost:8080/api/authenticate', credentials)
@@ -24,10 +26,11 @@ export class AuthService {
         // We're assuming the response will be an object
         // with the JWT on an id_token key
         data => { 
+          this.userService.saveCurrentUser(data.user);
           localStorage.setItem('id_token', data.id_token);
           return Observable.of(true);
         },
-        error => console.log(error)
+        error => {error=error.json(); this.alertService.error(error.error)}
       );
   }
 

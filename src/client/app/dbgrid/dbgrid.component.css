@@ -8,8 +8,23 @@
     width:50px;
     padding-top:10px;
     padding-bottom:10px;
-    border-right:1px solid gray;
+    border-right:1px solid #dddddd;
     padding:5px;
+}
+.tablerow .col.lineStatus {
+    flex-grow:0;
+    width:40px;
+}
+.tablerow .col.gridrow-expand {
+    flex-grow:0;
+    width:40px;
+}
+.tablerow .col.lineStatus .Online {
+    color:green;
+    font-size:20px;
+}
+.tablerow .col.lineStatus .Offline {
+    font-size:20px;
 }
 .tablerow .colheader {
     font-weight: bold;
@@ -20,6 +35,5 @@
     margin-bottom:0px;
 }
 .dbgrid .panel-heading {
-    padding-top:0px;
-    padding-bottom:0px;
+    padding:0px;
 }
