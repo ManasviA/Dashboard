@@ -8,7 +8,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NameListService } from './name-list/name-list.service';
 import {DataService} from './data/data.service';
 import {UserService} from './data/user.service';
+import {PasswordService} from './data/password.service';
 import  {AlertService} from './data/alert.service';
+import {DeviceService} from './data/device.service';
 import {AlertComponent} from './alert/alert.component'
 
 /**
@@ -25,7 +27,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [NameListService,DataService,UserService,AlertService]
+      providers: [NameListService,DataService,UserService,AlertService,PasswordService,DeviceService]
     };
   }
 }

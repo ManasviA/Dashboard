@@ -1,3 +1,10 @@
 <div>
-    <db-grid [rows]="rows" [cols]="cols"></db-grid>
+    <div class="row">
+        <h1>Dashboard <small>({{rows.length}})</small></h1>
+    </div>
+    <hr/>
+    <div class="row">
+        <div><input class="form-control" placeholder="Search..." type="text" [(ngModel)]="searchText"/></div>
+        <db-grid [rows]="rows" [cols]="cols" [filter]="searchText"></db-grid>
+    </div>
 </div>

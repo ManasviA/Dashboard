@@ -22,6 +22,16 @@
             <input type="text" class="form-control" name="role" [(ngModel)]="model.role" #role="ngModel" required />
             <div *ngIf="f.submitted && !role.valid" class="help-block">Role is required</div>
         </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mn.valid }">
+            <label for="mn">Mobile Number</label>
+            <input type="text" class="form-control" name="mn" [(ngModel)]="model.mobile_number" #mn="ngModel" required />
+            <div *ngIf="f.submitted && !mn.valid" class="help-block">Mobile Number is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !location.valid }">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" name="location" [(ngModel)]="model.location" #location="ngModel" required />
+            <div *ngIf="f.submitted && !location.valid" class="help-block">Location is required</div>
+        </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Register</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />

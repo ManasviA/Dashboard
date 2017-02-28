@@ -15,7 +15,7 @@ export class ProjectConfig extends SeedConfig {
     super();
      // Add packages (e.g. angular2-jwt)
     
-    // this.APP_TITLE = 'Put name of your app here';
+     this.APP_TITLE = 'Tessol Thermal Energy Solutions';
 
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     // this.TYPED_COMPILE_INTERVAL = 5;
@@ -46,7 +46,13 @@ export class ProjectConfig extends SeedConfig {
       name: 'moment',
       // Path to the package's bundle
       path: 'node_modules/moment/moment.js'
-    }];
+     }
+    ,{
+      name: 'ng2-bootstrap',
+      // Path to the package's bundle
+      path: 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+    }
+   ];
     this.addPackagesBundles(additionalPackages);
     // Add packages (e.g. ng2-translate)
     // let additionalPackages: ExtendPackages[] = [{

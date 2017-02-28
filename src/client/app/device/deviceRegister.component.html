@@ -1,0 +1,31 @@
+<div class="col-md-6 col-md-offset-3">
+    <alert></alert>
+    <h2>Add Device</h2>
+    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !id.valid }">
+            <label for="id">Device ID</label>
+            <input type="text" class="form-control" name="id" [(ngModel)]="model.id" #id="ngModel" required />
+            <div *ngIf="f.submitted && !id.valid" class="help-block">Device ID is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+            <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !vn.valid }">
+            <label for="vn">Vehicle Number</label>
+            <input type="text" class="form-control" name="vn" [(ngModel)]="model.vehicle_no" #vn="ngModel" required />
+            <div *ngIf="f.submitted && !vn.valid" class="help-block">Vehicle Number is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !driver.valid }">
+            <label for="driver">Driver</label>
+            <input type="text" class="form-control" name="driver" [(ngModel)]="model.driver" #driver="ngModel" required />
+            <div *ngIf="f.submitted && !driver.valid" class="help-block">Driver is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Add Device</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->
+        </div>
+    </form>
+</div>

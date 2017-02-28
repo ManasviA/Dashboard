@@ -10,10 +10,21 @@
     padding-bottom:10px;
     border-right:1px solid #dddddd;
     padding:5px;
+    color: #73879C;
+    height:105px;
 }
 .tablerow .col.lineStatus {
     flex-grow:0;
     width:40px;
+}
+.tablerow .col.alerts {
+    flex-grow:0;
+    width:60px;
+    color:#ca6767;
+}
+.tablerow .col.speed {
+    flex-grow:0;
+    width:100px;
 }
 .tablerow .col.gridrow-expand {
     flex-grow:0;
@@ -30,6 +41,8 @@
     font-weight: bold;
     width:50px;
     flex-grow:1;
+    color: #73879C;
+    height:50px;
 }
 .dbgrid.panel-group {
     margin-bottom:0px;

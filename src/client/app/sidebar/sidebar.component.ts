@@ -12,6 +12,7 @@ import { UserService } from '../shared/data/user.service';
 export class SideBarComponent implements OnInit {
 
   private userName:string;
+  private userType:string;
   constructor(private userService: UserService) {}
 
   /**
@@ -19,6 +20,7 @@ export class SideBarComponent implements OnInit {
    */
   ngOnInit() {
       this.userName=this.userService.getCurrentUser().user_detail.name;
+      this.userType=this.userService.getCurrentUser().user_detail.role;
   }
 
 }

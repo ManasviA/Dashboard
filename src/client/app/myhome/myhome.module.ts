@@ -4,7 +4,10 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { MyHomeComponent } from './myhome.component';
 import { MyHomeRoutingModule } from './myhome-routing.module';
-
+import { PaginationModule  } from 'ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { TopNavModule } from '../topnav/topnav.module';
 import { SideBarModule } from '../sidebar/sidebar.module';
 import { FooterModule } from '../footer/footer.module';
@@ -16,10 +19,15 @@ import {DbDetailComponent} from '../dbgrid/dbdetail.component';
 import { SharedModule } from '../shared/shared.module';
 import {Collapse} from '../dbgrid/collapse.component';
 import {RegisterComponent} from '../user/register.component';
+import {UserListComponent} from '../user/userlist.component';
+import {DeviceRegisterComponent} from '../device/deviceRegister.component';
+import {DeviceListComponent} from '../device/deviceList.component';
+import {SearchPipe} from '../dashboard/search.pipe';
+import { ModalModule } from 'ng2-bootstrap';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
-  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent],
+  imports: [BrowserModule, HttpModule,Ng2TableModule,PaginationModule.forRoot(),ModalModule.forRoot(),DropdownModule.forRoot(),TabsModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
+  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe],
   providers: [],
   bootstrap: [MyHomeComponent]
 

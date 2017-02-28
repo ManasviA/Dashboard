@@ -5,7 +5,7 @@
           <div *ngFor="let col of cols"  [ngClass]="['col','colheader',col.key]">
             <db-header [col]="col"></db-header>
           </div>
-             <div [ngClass]="{'col':true,'gridrow-expand':true}"></div>
+             <div [ngClass]="{'col':true,'colheader':true,'gridrow-expand':true}"></div>
         </div>
       </div>
       <div id="collapse1" class="panel-collapse collapse">
@@ -14,23 +14,39 @@
       </div>
     </div>
   </div>
-<div class="dbgrid panel-group" *ngFor="let row of rows; let i = index;">
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Device Detail: {{detailViewRow.id}}</h4>
+                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">  
+                     <db-detail [data]="detailViewRow"></db-detail>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+<div class="dbgrid panel-group" *ngFor="let row of rows|search:filter; let i = index;">
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="tablerow">
           <div *ngFor="let col of cols"  [ngClass]="['col',col.key]">
             <db-column [col]="col" [data]="row"></db-column>
           </div>
-          <div style="cursor:pointer" [ngClass]="{'col':true,'gridrow-expand':true, 'glyphicon':true, 'glyphicon-menu-down':!isExpanded(i), 'glyphicon-menu-up':isExpanded(i)}" 
-           (click)="expand(i)">
-           </div>
+          <div title="View Details" class="glyphicon glyphicon-eye-open col gridrow-expand" style="cursor:pointer" (click)="expand(row)"></div>
         </div>
       </div>
-      <div id="collapse1" class="panel-collapse" [collapse]="!isExpanded(i)">
+      <!--<div id="collapse1" class="panel-collapse" [collapse]="!isExpanded(row.id)">
         <div class="panel-body">
           <db-detail [data]="row"></db-detail>
         </div>
         <!--<div class="panel-footer">Panel Footer</div>-->
-      </div>
+      <!--</div>-->
     </div>
+    
   </div>

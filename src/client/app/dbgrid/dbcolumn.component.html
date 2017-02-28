@@ -4,7 +4,17 @@
         <div style="font-size:10px;">{{data.lineStatus}}</div>
     </div>
     <div *ngIf="col.key=='lastUpdated'">
-        {{data.lastUpdated}}
+        {{data.lastUpdated | date:"MM/dd/yy"}}
+    </div>
+    <div *ngIf="col.key=='alerts'">
+        <i title="Power Failure Alert" *ngIf="data.masterdata.PowerFail=='0'" class="fa fa-battery-empty" aria-hidden="true"></i>
+        <i title="SD Card Not Present" *ngIf="data.masterdata.CardPresent=='0'" class="fa fa-clipboard" aria-hidden="true"></i>
+        <i title="Internal Memory Not Available" *ngIf="data.masterdata.IntMemory=='0'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    </div>
+    <div *ngIf="col.key=='id'">
+        <strong>{{data.id}}</strong>
+        <br/>
+        {{data.name}}
     </div>
     <div *ngIf="col.key=='groupName'">
         {{data.groupName}}
@@ -18,14 +28,14 @@
     <div *ngIf="col.key=='driver'">
         {{data.driver}}
     </div>
-    <div *ngIf="col.key=='location'">
-         "Sawali Society"," Savitribai Phule Nagar"," Laxmi Naga"
+    <div *ngIf="col.key=='address'">
+         {{data.address}}
     </div>
     <div *ngIf="col.key=='checkPoint'">
         Checkpoint
     </div>
     <div *ngIf="col.key=='speed'">
-        {{data.speed}} km/h
+        {{data.gpsdata.speed}} km/h
     </div>
     <div *ngIf="col.key=='distance'">
         Distance
@@ -33,4 +43,5 @@
     <div *ngIf="col.key=='temperature'">
         Temperature
     </div>
+    
 </div>

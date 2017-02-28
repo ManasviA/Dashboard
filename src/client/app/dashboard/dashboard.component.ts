@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../shared/data/data.service';
+import { DeviceService } from '../shared/data/device.service';
 import { Column } from '../dbgrid/dbgrid.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
@@ -11,74 +12,89 @@ import 'rxjs/add/observable/interval';
 @Component({
   moduleId: module.id,
   selector: 'dashboard',
-  templateUrl: 'dashboard.component.html',
+  templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private dataservice:DataService) {}
+  constructor(private dataservice:DataService,private deviceService:DeviceService) {}
 
-  private rows:any=[{
-					"id":"IOL6889YG",
-					"lastUpdated":"02-02-1999",
-					"lineStatus":"Online",
-					"groupName":"Sneha Foods",
-					"vehicleNumber":"GJ-12-R-6788",
-					"driver":"Mana H. Dav",
-					"speed":"60",
-					"latitude":"16.489",
-					"longitude":"77.93",
-					"activePower":"6.77",
-					"PH1":"0",
-					"PH2":"0",
-					"PH3":"0",
-					"roomTemp":"14.6",
-					"plateTemp":"53",
-					"cdTemp":"20",
-					"avgVolt":"0",
-					"totalCurrent":"0",
-					"totalKwh":"29.26",
-					"battery":"11.59"
-				},{
-					"id":"IOL6468WK",
-					"lastUpdated":"02-02-1999",
-					"lineStatus":"Online",
-					"groupName":"Sneha Foods",
-					"vehicleNumber":"GJ-12-R-6788",
-					"driver":"Mana H. Dav",
-					"speed":"60",
-					"latitude":"16.489",
-					"longitude":"77.93",
-					"activePower":"6.77",
-					"PH1":"0",
-					"PH2":"0",
-					"PH3":"0",
-					"roomTemp":"14.6",
-					"plateTemp":"53",
-					"cdTemp":"20",
-					"avgVolt":"0",
-					"totalCurrent":"0",
-					"totalKwh":"29.26",
-					"battery":"11.59"
-				}];
 
-  private cols:Array<Column>=[{key:'lineStatus',label:'Status',minWidth:'50px'},
-    {key:'lastUpdated',label:'Last Updated',minWidth:'50px'},
-		{key:'groupName',label:'GroupName',minWidth:'50px'},
-		{key:'location',label:'Location',minWidth:'50px'},
-		{key:'speed',label:'Speed',minWidth:'50px'}
-  ];
+	ngOnInit() { 
+		this.dataservice.getDashBoardData().subscribe(data=>{
+					let existingDeviceIds:Array<any>=this.rows.map((row:any)=>row.id);
 
-	
+					let transformedData=this.transform(data);
+					this.onlineDevices=transformedData.filter((device:any)=>parseInt(device.is_online)!=0);
+					this.offlineDevices=transformedData.filter((device:any)=>parseInt(device.is_online)==0);
 
-  ngOnInit() { 
+					this.rows=[...this.onlineDevices,...this.offlineDevices];
+
+			});
     Observable.interval(10*1000).subscribe(()=>{
       this.dataservice.getDashBoardData().subscribe(data=>{
-				
-				
-	
+					let existingDeviceIds:Array<any>=this.rows.map((row:any)=>row.id);
+
+					let transformedData=this.transform(data);
+					this.onlineDevices=transformedData.filter((device:any)=>parseInt(device.is_online)!=0);
+					this.offlineDevices=transformedData.filter((device:any)=>parseInt(device.is_online)==0);
+
+					this.rows=[...this.onlineDevices,...this.offlineDevices];
+
 			});
     })
   }
+
+	private onlineDevices:Array<any>=[];
+	private offlineDevices:Array<any>=[];
+	private rows:Array<any>=[];
+
+
+  
+	
+	
+	private cols:Array<Column>=[{key:'lineStatus',label:'Status'},
+		{key:'alerts',label:'Alerts'},
+		{key:'id',label:'Device ID/Name'},
+    {key:'address',label:'Address'},
+		{key:'lastUpdated',label:'Last Updated'},
+		{key:'speed',label:'Speed'}
+  ];
+
+	transform(devices:any) {
+		return devices.map((device:any)=>{
+			let newObj=device;
+			if(device.is_online) {
+				newObj.lineStatus="Online";
+			} else {
+				newObj.lineStatus="Offline";
+			}
+			if(device.latest_device_log) {
+				newObj.lastUpdated=device.latest_device_log.created_at;
+				newObj.gpsdata=device.latest_device_log.payload.dataset.gpsdata;
+				newObj.masterdata=device.latest_device_log.payload.dataset.masterdata;
+				newObj.localdata=device.latest_device_log.payload.dataset.localdata;
+				if(newObj.gpsdata && newObj.gpsdata.lat && newObj.gpsdata.lon) {
+					this.deviceService.getAddress(newObj.gpsdata.lon,newObj.gpsdata.lat)
+					.subscribe((data:any)=>{
+						if(data && data.results && data.results.length) {
+							newObj.address=data.results[0].formatted_address;
+						}
+					})
+				}
+			} else {
+				newObj.lastUpdated=null;
+				newObj.gpsdata={};
+				newObj.masterdata={};
+				newObj.localdata={};
+			}
+			
+			return newObj;
+		});
+	}
+	
+	
+
+  
 
 	
 

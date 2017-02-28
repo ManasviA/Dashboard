@@ -1,10 +1,10 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, ViewChild } from '@angular/core';
 import {Collapse} from './collapse.component';
 
 export interface Column {
     key:string;
     label:string;
-    minWidth:string;
+    minWidth?:string;
 }
 
 
@@ -23,18 +23,20 @@ export class DbGridComponent {
     cols: Array<Column>;
     @Input()
     rows:any;
+    @Input()
+    filter:string;
+    @ViewChild('lgModal') lgModal: any;
+    detailViewRow:Object={
+        masterdata:{},
+        localdata:{},
+        gpsdata:{}
+    };
     
     private expandedIndex:Array<Number>=[];
 
-    isExpanded(i:Number){
-        return this.expandedIndex.indexOf(i)>=0;
-    }
-    expand(i:Number) {
-        let index=this.expandedIndex.indexOf(i);
-        if(index>=0) {
-            this.expandedIndex=this.expandedIndex.slice(0,index).concat(this.expandedIndex.slice(index+1))
-        } else {
-            this.expandedIndex=[...this.expandedIndex,i];
-        }
+    
+    expand(row:Object) {
+        this.detailViewRow=row;
+        this.lgModal.show();
     }
 }

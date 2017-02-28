@@ -61,3 +61,10 @@ button {
 button:hover {
   background-color: #28739e;
 }
+
+img.img-side-title {
+    margin-left: -10px;
+    width: 230px;
+    height: 55px;
+    vertical-align: inherit;
+}

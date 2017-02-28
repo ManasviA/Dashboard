@@ -3,6 +3,8 @@ import {Http, RequestOptions} from '@angular/http'
 import { AuthService} from './auth.service';
 import { AuthGuard} from './auth-guard.service';
 import { LoginComponent} from './login.component';
+import { ResetComponent} from './reset.component';
+import { NewPassComponent} from './newpass.component';
 import { LoginRoutingModule} from './login-routing.module';
 import { FormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,7 +19,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 @NgModule({
   imports:[LoginRoutingModule, FormsModule, BrowserModule, CommonModule, SharedModule.forRoot()],
-  declarations: [LoginComponent],
+  declarations: [LoginComponent,ResetComponent,NewPassComponent],
   providers: [{
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,

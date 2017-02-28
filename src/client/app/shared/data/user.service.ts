@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { Subject } from 'rxjs/Subject';
+import { CONTEXTROOT } from '../contextRoot';
 
 export interface User {
     email: number;
@@ -33,7 +34,7 @@ export class UserService {
     // }
 
     create(user: User) {
-        return this.authHttp.post('/api/user/add', user).map((response: Response) => response.json());
+        return this.authHttp.post(CONTEXTROOT+'user/add', user).map((response: Response) => response.json());
     }
 
     // update(user: User) {
@@ -41,8 +42,11 @@ export class UserService {
     // }
 
     delete(email: string) {
-        return this.authHttp.post('/api/user/remove',{email:email}).map((response: Response) => response.json());
+        return this.authHttp.post(CONTEXTROOT+'user/remove',{email:email}).map((response: Response) => response.json());
     }
     
+    getAllUsers() {
+        return this.authHttp.get(CONTEXTROOT+'user/all').map((response: Response) => response.json());
+    }
 
 }

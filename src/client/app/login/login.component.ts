@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {AlertService} from '../shared/data/alert.service'
 
 interface Credentials {
-  username: string,
+  email: string,
   password: string
 }
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(credentials:Credentials) {
     this.alertService.info("Signing In...");
-    credentials={username:this.username,password:this.password};
+    credentials={email:this.username,password:this.password};
     this.auth.login(credentials).subscribe(()=> {
       if(this.auth.loggedIn()) {
         let redirect=this.auth.redirectUrl ? this.auth.redirectUrl:'/user/dashboard';

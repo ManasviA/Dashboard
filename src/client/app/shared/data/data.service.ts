@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt/angular2-jwt';
+import { CONTEXTROOT } from '../contextRoot';
 // import 'rxjs/add/operator/do';  // for debugging
 
 /**
@@ -22,7 +23,7 @@ export class DataService {
    * @return {string[]} The Observable for the HTTP request.
    */
   getDashBoardData(): Observable<string[]> {
-    return this.authHttp.get('http://localhost:8080/api/dashboard')
+    return this.authHttp.get(CONTEXTROOT+'dashboard')
                     .map((res: Response) => res.json())
     //              .do(data => console.log('server data:', data))  // debug
                     .catch(this.handleError);
