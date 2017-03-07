@@ -7,9 +7,9 @@
         {{data.lastUpdated | date:"MM/dd/yy"}}
     </div>
     <div *ngIf="col.key=='alerts'">
-        <i title="Power Failure Alert" *ngIf="data.masterdata.PowerFail=='0'" class="fa fa-battery-empty" aria-hidden="true"></i>
-        <i title="SD Card Not Present" *ngIf="data.masterdata.CardPresent=='0'" class="fa fa-clipboard" aria-hidden="true"></i>
-        <i title="Internal Memory Not Available" *ngIf="data.masterdata.IntMemory=='0'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <i title="Power Failure Alert" *ngIf="data.payload.PowerFail=='0'" class="fa fa-battery-empty" aria-hidden="true"></i>
+        <i title="SD Card Not Present" *ngIf="data.payload.CardPresent=='0'" class="fa fa-clipboard" aria-hidden="true"></i>
+        <i title="Internal Memory Not Available" *ngIf="data.payload.IntMemory=='0'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     </div>
     <div *ngIf="col.key=='id'">
         <strong>{{data.id}}</strong>
@@ -35,7 +35,7 @@
         Checkpoint
     </div>
     <div *ngIf="col.key=='speed'">
-        {{data.gpsdata.speed}} km/h
+        {{data.payload.speed}} km/h
     </div>
     <div *ngIf="col.key=='distance'">
         Distance

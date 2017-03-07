@@ -1,1 +1,1 @@
-export let CONTEXTROOT="/svc/core/api/";
+export let CONTEXTROOT="svc/core/api/";

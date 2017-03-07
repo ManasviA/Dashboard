@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+/// <reference path="../../../../node_modules/@types/googlemaps/index.d.ts" />
+import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 import { Column } from './dbgrid.component'
 
 
