@@ -25,7 +25,7 @@ const myHomeRoutes: Routes = [
           { path: 'adddevice', component: DeviceRegisterComponent, canActivate: [AdminGuard]  },
           { path: 'devices', component: DeviceListComponent  },
           { path: 'users', component: UserListComponent, canActivate: [AdminGuard]  },
-        //  { path: 'history/:id', component: HistoryComponent  },
+          { path: 'history/:id', component: HistoryComponent  },
           { path: '**', component: DashboardComponent }
         ],
       }

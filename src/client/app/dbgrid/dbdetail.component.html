@@ -20,40 +20,40 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">PH1</div>
-        <div class="col-sm-5" *ngIf="data.payload.VoltageR!=undefined">{{data.payload.VoltageR}} V</div>
+        <div class="col-sm-5" *ngIf="data.payload.VoltageR!=undefined">{{data.payload.vr}} V</div>
         <div class="col-sm-5" *ngIf="!(data.payload.VoltageR!=undefined)">NA</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">PH2</div>
-        <div class="col-sm-5" *ngIf="data.payload.VoltageY!=undefined">{{data.payload.VoltageY}} V</div>
+        <div class="col-sm-5" *ngIf="data.payload.VoltageY!=undefined">{{data.payload.vy}} V</div>
         <div class="col-sm-5" *ngIf="!(data.payload.VoltageY!=undefined)">NA</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">PH3</div>
-        <div class="col-sm-5" *ngIf="data.payload.VoltageB!=undefined">{{data.payload.VoltageB}} V</div>
+        <div class="col-sm-5" *ngIf="data.payload.VoltageB!=undefined">{{data.payload.vb}} V</div>
         <div class="col-sm-5" *ngIf="!(data.payload.VoltageB!=undefined)">NA</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">ROOM TEMP</div>
-        <div class="col-sm-5">{{data.payload.RoomTemp}} C</div>
+        <div class="col-sm-5">{{data.payload.rt}} C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">PLATE TEMP</div>
-        <div class="col-sm-5">{{data.payload.PlateTemp}} C</div>
+        <div class="col-sm-5">{{data.payload.pt}} C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">CD TEMP</div>
-        <div class="col-sm-5">{{data.payload.CdTemp}} C</div>
+        <div class="col-sm-5">{{data.payload.ct}} C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
