@@ -26,7 +26,10 @@
             <div class="modal-body">
                 <div class="container"> 
                   <div class="row">
-                        <div class="col-sm-4"><db-detail [data]="detailViewRow"></db-detail></div>
+                        <div class="col-sm-4">
+                          <db-detail [data]="detailViewRow"></db-detail>
+                          <button class="btn btn-primary" (click)="viewHistory()">View Historical Data</button>
+                        </div>
                         <div class="col-sm-8">
                             <div id="map" style="height:500px"></div>
                         </div>

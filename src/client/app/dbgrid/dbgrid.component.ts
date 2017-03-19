@@ -2,6 +2,7 @@
 
 import { Component, Input, ViewEncapsulation, ViewChild, OnChanges, SimpleChange  } from '@angular/core';
 import {Collapse} from './collapse.component';
+import { Router } from '@angular/router';
 
 export interface Column {
     key:string;
@@ -32,6 +33,8 @@ export class DbGridComponent implements OnChanges{
         payload:{}
     };
     
+    constructor(private router:Router) {}
+
     private expandedIndex:Array<Number>=[];
     private map:any;
     private marker:any;
@@ -46,6 +49,10 @@ export class DbGridComponent implements OnChanges{
             }
         }
     }
+
+    viewHistory() {
+        this.router.navigate(['user','history',this.detailViewRow.id]);
+    }
     
     expand(row:any) {
         this.detailViewRow=row;
@@ -54,12 +61,17 @@ export class DbGridComponent implements OnChanges{
         setTimeout(() => {
             this.map=new google.maps.Map(document.getElementById('map'), {
             center: {lat: parseInt(row.payload.lat), lng: parseInt(row.payload.lon)},
-            zoom: 8
+            zoom: 15
             });
             vm.marker = new google.maps.Marker({
-            position: {lat: parseInt(row.payload.lat), lng: parseInt(row.payload.lon)},
-            map: this.map
+                position: {lat: parseInt(row.payload.lat), lng: parseInt(row.payload.lon)},
+                map: this.map,
+                icon:'assets/images/Jeep.png'
             });
+            if(!this.map.getBounds().contains(this.marker.getPosition())) {
+                this.map.setCenter(this.marker.getPosition());  
+            }
+        
         },500);
     }
 }

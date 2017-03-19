@@ -51,6 +51,11 @@ export class ProjectConfig extends SeedConfig {
       name: 'ng2-bootstrap',
       // Path to the package's bundle
       path: 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+    },
+    {
+      name: 'jquery',
+      // Path to the package's bundle
+      path: 'node_modules/jquery/dist/jquery.min.js'
     }
    ];
     this.addPackagesBundles(additionalPackages);

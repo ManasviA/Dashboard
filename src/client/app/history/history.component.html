@@ -1,1 +1,56 @@
-<div>History</div>
+<div>
+    <div class="row">
+        <h1>Device History - {{deviceId}}</h1>
+    </div>
+     <hr/>
+    <div class="row">
+        <div class="col-sm-4">
+        <label>From:</label>
+        <datetime [(ngModel)]="startdt"></datetime>
+            
+            <!--<div class="datepickerDiv">
+                <input type="text" value="{{ getStartDate() | date:'dd-MMMM-yyyy' }}" class="datepicker">
+                <span class="cal-icon" (click)="startOpen()"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                <!--<span class="clearDate" (click)="clearStartDate()"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <ul class="datepicker-ul" role="menu" *ngIf="startOpened">
+                    <datepicker [(ngModel)]="startdt" [minDate]="minDate" [showWeeks]="false" (selectionDone)="onStartSelectionDone($event)"></datepicker>
+                </ul>
+            </div>-->
+            
+        </div>
+        <div class="col-sm-4">
+            <label>To:</label>
+            <datetime [(ngModel)]="enddt"></datetime>
+            <!--<div class="datepickerDiv">
+                <input type="text" value="{{ getEndDate() | date:'dd-MMMM-yyyy' }}" class="datepicker">
+                <span class="cal-icon" (click)="endOpen()"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                <!--<span class="clearDate" (click)="clearEndDate()"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <ul class="datepicker-ul" role="menu" *ngIf="endOpened">
+                    <datepicker [(ngModel)]="enddt" [minDate]="minDate" [showWeeks]="false" (selectionDone)="onEndSelectionDone($event)"></datepicker>
+                </ul>
+            </div>-->
+        </div>
+        <div class="col-sm-4"><br/><button class="btn btn-primary" (click)="getData()">Get Data</button></div>
+
+    </div>
+    <tabset *ngIf="dateEntered">
+        <tab (select)="selectTab('db')" [active]="activeView=='db'">
+            <template tabHeading>
+                Historic Report
+            </template>
+            <div id="container-highchart"  style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </tab>
+        <tab (select)="selectTab('map')" [active]="activeView=='map'">
+            <template tabHeading>
+                Map View
+            </template>
+            <div id="maphistory" style="height:500px"></div>
+        </tab>
+        <!--<tab (select)="selectTab('table')" [active]="activeView=='table'">
+            <template tabHeading>
+                Table View
+            </template>
+            I've got an HTML heading, and a select callback. Pretty cool!
+        </tab>-->
+    </tabset>
+</div>

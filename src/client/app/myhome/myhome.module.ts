@@ -24,10 +24,13 @@ import {DeviceRegisterComponent} from '../device/deviceRegister.component';
 import {DeviceListComponent} from '../device/deviceList.component';
 import {SearchPipe} from '../dashboard/search.pipe';
 import { ModalModule } from 'ng2-bootstrap';
+import { HistoryComponent } from '../history/history.component';
+import { DatepickerModule } from 'ng2-bootstrap';
+import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule,Ng2TableModule,PaginationModule.forRoot(),ModalModule.forRoot(),DropdownModule.forRoot(),TabsModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
-  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe],
+  imports: [BrowserModule, HttpModule,Ng2TableModule,PaginationModule.forRoot(),ModalModule.forRoot(),DropdownModule.forRoot(),TabsModule.forRoot(), DatepickerModule.forRoot(), NKDatetimeModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
+  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe,HistoryComponent],
   providers: [],
   bootstrap: [MyHomeComponent]
 

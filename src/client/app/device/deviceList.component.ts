@@ -150,6 +150,8 @@ export class DeviceListComponent implements OnInit {
               }
           });
       }
+    } else if(data.column=="historyString") {
+        this.router.navigate(["user","history",data.row.id]);
     }
   }
 
@@ -163,12 +165,14 @@ export class DeviceListComponent implements OnInit {
     if(this.userType==="admin") {
       this.columns.push({title: 'Users', name: 'userString'});
       this.columns.push({title: 'Action', name: 'actionString'});
+      this.columns.push({title: 'View History', name: 'historyString'});
     }
     this.deviceService.getAllDevices().subscribe(data=>{
         vm.data=data.map((row:any)=>{
             row.userString="";
             row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
             row.actionString="<button class=\"btn btn-primary\">Delete Device</button>";
+            row.historyString="<button class=\"btn btn-primary\">View History</button>";
             return row;
         });
         vm.onChangeTable(this.config);
