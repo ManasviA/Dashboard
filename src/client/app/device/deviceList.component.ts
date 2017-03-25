@@ -141,6 +141,23 @@ export class DeviceListComponent implements OnInit {
               } else {
                   this.alertService.success("Device successfully deleted.");
               }
+              this.deviceService.getAllDevices().subscribe(data=>{
+              this.data=data.map((row:any)=>{
+                      row.userString="";
+                      row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
+                      row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
+                      row.historyString="<a class=\"btn btn-primary btn-sm\">View History</a>";
+                      return row;
+                  });
+                  this.onChangeTable(this.config);
+              },
+              error => {
+                  if(error && error.error) {
+                      this.alertService.error(error.error);
+                  } else {
+                      this.alertService.error("Error getting devices");
+                  }
+              });
           },
           error => {
               if(error && error.error) {
@@ -151,7 +168,7 @@ export class DeviceListComponent implements OnInit {
           });
       }
     } else if(data.column=="historyString") {
-        this.router.navigate(["user","history",data.row.id]);
+        this.router.navigate(["user","devices","history",data.row.id]);
     }
   }
 
@@ -171,8 +188,8 @@ export class DeviceListComponent implements OnInit {
         vm.data=data.map((row:any)=>{
             row.userString="";
             row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
-            row.actionString="<button class=\"btn btn-primary\">Delete Device</button>";
-            row.historyString="<button class=\"btn btn-primary\">View History</button>";
+            row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
+            row.historyString="<a class=\"btn btn-primary btn-sm\">View History</a>";
             return row;
         });
         vm.onChangeTable(this.config);

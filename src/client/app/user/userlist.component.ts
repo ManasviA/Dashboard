@@ -150,6 +150,7 @@ export class UserListComponent implements OnInit {
                     } else {
                         this.alertService.success("User successfully deleted.");
                     }
+                    this.refresh();
                 },
                 error => {
                     if(error && error.error) {
@@ -177,6 +178,7 @@ export class UserListComponent implements OnInit {
                     } else {
                         this.alertService.success("Device successfully revoked.");
                     }
+                    this.refresh();
                 },
                 error => {
                     if(error && error.error) {
@@ -185,6 +187,7 @@ export class UserListComponent implements OnInit {
                         this.alertService.error("Error revoking device.");
                     }
                 });
+                
   }
 
   addDevice(id:string) {
@@ -197,6 +200,7 @@ export class UserListComponent implements OnInit {
                     } else {
                         this.alertService.success("Device successfully attached.");
                     }
+                    this.refresh();
                 },
                 error => {
                     if(error && error.error) {
@@ -205,6 +209,32 @@ export class UserListComponent implements OnInit {
                         this.alertService.error("Error attaching device.");
                     }
                 });
+                
+  }
+
+  refresh() {
+    this.userService.getAllUsers().subscribe(data=>{
+        this.data=data.map((row:any)=>{
+            row.deviceString="";
+            row.deviceString=row.devices.map((device:any)=>device.id).join(",");
+            row.name=row.user_detail.name;
+            row.employee_id=row.user_detail.employee_id;
+            row.mobile_number=row.user_detail.mobile_number;
+            row.location=row.user_detail.location;
+            row.role=row.user_detail.role;
+            row.actionString="<a class=\"btn btn-primary btn-sm\">Assign Devices</a>";
+            row.deleteActionString="<a class=\"btn btn-primary btn-sm\">Delete User</a>";
+            return row;
+        });
+        this.onChangeTable(this.config);
+    },
+    error => {
+        if(error && error.error) {
+            this.alertService.error(error.error);
+        } else {
+            this.alertService.error("Error getting devices");
+        }
+    });
   }
 
   ngOnInit() { 
@@ -218,8 +248,8 @@ export class UserListComponent implements OnInit {
             row.mobile_number=row.user_detail.mobile_number;
             row.location=row.user_detail.location;
             row.role=row.user_detail.role;
-            row.actionString="<button class=\"btn btn-primary\">Assign Devices</button>";
-            row.deleteActionString="<button class=\"btn btn-primary\">Delete User</button>";
+            row.actionString="<a class=\"btn btn-primary btn-sm\">Assign Devices</a>";
+            row.deleteActionString="<a class=\"btn btn-primary btn-sm\">Delete User</a>";
             return row;
         });
         vm.onChangeTable(this.config);

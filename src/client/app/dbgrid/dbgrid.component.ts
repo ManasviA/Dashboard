@@ -51,7 +51,7 @@ export class DbGridComponent implements OnChanges{
     }
 
     viewHistory() {
-        this.router.navigate(['user','history',this.detailViewRow.id]);
+        this.router.navigate(['user','devices','history',this.detailViewRow.id]);
     }
     
     expand(row:any) {

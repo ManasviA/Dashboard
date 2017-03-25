@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by carasmo (http://jsbin.com/OjOTIGaP/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+ <script src="http://code.jquery.com/jquery.min.js"></script>
+ <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.9/css/highcharts.css"/>
+ <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.9/highcharts.js"></script>
+ <meta charset=utf-8 />
+ <title>Tessol</title>
+
+</head>
+<body style="border:solid 1px;margin:10px;">
+  
+  <!--wrap the page content do not style this-->
+ <div id="page-content">
+   
+  <div class="container" >
+    <h1 class="no-margin-top">Tessol</h1>
+    <h4>Temperature Report</h4>
+    <table class="table">
+        <tr>
+            <th>Report Name : Temperature</th>
+            <th id="deviceid"></th>
+        </tr>
+        <tr>
+            <th colspan="2" id="daterange"></th>
+        </tr>
+    </table>
+    <hr/>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>ROOM TEMP (&deg;C)</th>
+            <th>PLATE TEMP (&deg;C)</th>
+            <th>CD TEMP (&deg;C)</th>
+        </tr>
+        <tr id="min">
+            <th>MINIMUM</th>
+            <td class="rt"></td>
+            <td class="pt"></td>
+            <td class="ct"></td>
+        </tr>
+        <tr id="max">
+            <th>MAXIMUM</th>
+            <td class="rt"></td>
+            <td class="pt"></td>
+            <td class="ct"></td>
+        </tr>
+        <tr id="avg">
+            <th>AVERAGE</th>
+            <td class="rt"></td>
+            <td class="pt"></td>
+            <td class="ct"></td>
+        </tr>
+    </table>
+    <p id="totalrec"></p>
+    <div id="container-highchart" style="width:70%; height: 400px; "></div>
+    <hr/>
+
+    <div id="dev_table">
+
+    </div>
+    
+
+    
+    
+   </div>
+  <!-- /.container -->
+  
+ </div>
+ <script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    var devdata;
+
+    $.post('http://localhost:8080/svc/core/api/device/history/json'+'?token='+getParameterByName("token"),{
+      "device_id":getParameterByName("id"),
+      "from_timestamp":getParameterByName("from"),
+      "to_timestamp":getParameterByName("to")
+    } , function(response) {
+      data=response;
+      //console.log(data);
+      devdata=data;
+      $('#deviceid').text('Device ID : '+getParameterByName("id"));
+      $('#daterange').html('<span>Report generated from : '+moment(getParameterByName("from")).format('MMMM Do YYYY, h:mm:ss a')+
+      ' to '+moment(getParameterByName("to")).format('MMMM Do YYYY, h:mm:ss a')+
+      '</span>');
+
+      $("#min .rt").text(_(data.historic_logs).map(function(data) {
+        return data.payload.rt;
+      }).min());
+      $("#min .pt").text(_(data.historic_logs).map(function(data) {
+        return data.payload.pt;
+      }).min());
+      $("#min .ct").text(_(data.historic_logs).map(function(data) {
+        return data.payload.ct;
+      }).min());
+
+      $("#max .rt").text(_(data.historic_logs).map(function(data) {
+        return data.payload.rt;
+      }).max());
+      $("#max .pt").text(_(data.historic_logs).map(function(data) {
+        return data.payload.pt;
+      }).max());
+      $("#max .ct").text(_(data.historic_logs).map(function(data) {
+        return data.payload.ct;
+      }).max());
+
+
+      function average(acc, ele, index) {
+            console.log("acc",acc);
+            console.log("ele",ele);
+            console.log("return",(acc + ele) / (index + 1));
+            return (acc + ele) / (index + 1);
+        }
+      $("#avg .rt").text((_(data.historic_logs).map(function(data) {
+        return data.payload.rt;
+      }).sum()/data.historic_logs.length).toFixed(1));
+      $("#avg .pt").text((_(data.historic_logs).map(function(data) {
+        return data.payload.pt;
+      }).sum()/data.historic_logs.length).toFixed(1));
+      $("#avg .ct").text((_(data.historic_logs).map(function(data) {
+        return data.payload.ct;
+      }).sum()/data.historic_logs.length).toFixed(1));
+
+      $("#totalrec").text("TOTAL NUMBER OF RECORDS : "+data.historic_logs.length);
+
+
+
+
+      Highcharts.chart('container-highchart', {
+              chart: {
+                zoomType: 'x'
+              },
+              title: {
+                text: 'Device Historical Data'
+              },
+              xAxis: [{
+                type: 'datetime'
+              }],
+              yAxis: [{ // Primary yAxis
+                labels: {
+                  format: '{value}°C',
+                  style: {
+                    color: Highcharts.getOptions().colors[1]
+                  }
+                },
+                title: {
+                  text: 'Temperature',
+                  style: {
+                    color: Highcharts.getOptions().colors[1]
+                  }
+                }
+              }, 
+                { // Secondary yAxis
+                title: {
+                    enabled:false
+                },
+                labels: {
+                    enabled:false
+                },
+                min:0,
+                max:1,
+                tickInterval:1,
+                opposite: true
+            }
+              ],
+              tooltip: {
+                shared: true
+              },
+              legend: {
+                layout: 'vertical',
+                align: 'left',
+                x: 120,
+                verticalAlign: 'top',
+                y: 100,
+                floating: true,
+                backgroundColor:  '#FFFFFF'
+              },
+              series: [{
+                name: 'Door Open',
+                type: 'column',
+                yAxis: 1,
+                data: _(data.historic_logs).map(function(data) {
+                    return [new Date(data.created_at).getTime(),data.payload.do=="Yes"?1:0];
+                }).value(),
+              
+
+              },{
+                name: 'Room Temp',
+                type: 'spline',
+                data: _(data.historic_logs).map(function(data) {
+                    return [new Date(data.created_at).getTime(),data.payload.rt];
+                }).value(),
+              
+
+              }, {
+                name: 'Plate Temp',
+                type: 'spline',
+                data:  _(data.historic_logs).map(function(data) {
+                    return [new Date(data.created_at).getTime(),data.payload.pt];
+                }).value(),
+              
+              }, {
+                name: 'Cd Temp',
+                type: 'spline',
+                data:  _(data.historic_logs).map(function(data) {
+                    return [new Date(data.created_at).getTime(),data.payload.ct];
+                }).value(),
+              
+              }]
+            });
+
+
+     var trs=data.historic_logs.map(function(data,index){
+         return "<tr><td>"+(index+1)+"</td><td>"+data.created_at+"</td><td>"+data.payload.rt+"</td><td>"+data.payload.pt+"</td><td>"+data.payload.ct+"</td><td></td></tr>";
+     });
+     trs.unshift("<tr><th>NO</th><th>DEVICE TIMESTAMP</th><th>ROOM TEMP (&deg;C)</th><th>PLATE TEMP (&deg;C)</th><th>CD TEMP (&deg;C)</th><th>REMARKS</th></tr>")
+
+     var table=$('<table class="table"/>').html(trs.join(""));
+     $("#dev_table").append(table);
+
+      setTimeout(function() { window.print(); },2000);
+      
+  
+    }, 'json');
+    // var thequerystring = getParameterByName("id");
+    
+ </script>
+</body>
+</html>

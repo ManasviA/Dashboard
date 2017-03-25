@@ -1,12 +1,13 @@
 /// <reference path="../../../../node_modules/@types/googlemaps/index.d.ts" />
 
 const Highcharts = require('../../../../node_modules/highcharts/highcharts.js');
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DeviceService } from '../shared/data/device.service';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
 import 'bootstrap-timepicker/js/bootstrap-timepicker.js';
+import { CONTEXTROOT } from '../shared/contextRoot';
 
 
 /**
@@ -26,6 +27,8 @@ export class HistoryComponent implements OnInit {
     private router: Router,
     private deviceService: DeviceService
   ) { }
+  
+  @ViewChild('csvframe') csvframe:any; 
 
   private data: any;
   private deviceId:any;
@@ -251,6 +254,14 @@ export class HistoryComponent implements OnInit {
 
   getCTData() {
     return this.data.historic_logs.map((data:any)=>[new Date(data.created_at).getTime(), data.payload.ct]);
+  }
+
+  print() {
+    window.open("print.html?id="+this.deviceId+"&from="+(new Date(this.startdt)).toISOString()+"&to="+(new Date(this.startdt)).toISOString()+"&token="+localStorage.getItem('id_token').replace("Bearer ",""));
+  }
+
+  getCSV() {
+    this.csvframe.nativeElement.src=CONTEXTROOT+"device/history/csv?device_id="+this.deviceId+"&from_timestamp="+(new Date(this.startdt)).toISOString()+"&to_timestamp="+(new Date(this.enddt)).toISOString()+"&token="+localStorage.getItem('id_token').replace("Bearer ","");
   }
 
 }

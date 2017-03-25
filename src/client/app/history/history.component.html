@@ -30,7 +30,11 @@
                 </ul>
             </div>-->
         </div>
-        <div class="col-sm-4"><br/><button class="btn btn-primary" (click)="getData()">Get Data</button></div>
+        <div class="col-sm-4">
+            <br/><button class="btn btn-primary" (click)="getData()">Get Data</button>
+            <button style="margin-left:10px" class="btn btn-primary" (click)="print()">Get PDF Report</button>
+            <button style="margin-left:10px" class="btn btn-primary" (click)="getCSV()">Get CSV Report</button>
+        </div>
 
     </div>
     <tabset *ngIf="dateEntered">
@@ -53,4 +57,5 @@
             I've got an HTML heading, and a select callback. Pretty cool!
         </tab>-->
     </tabset>
+    <iframe #csvframe id="csv_iframe" style="display:none;"></iframe>
 </div>
