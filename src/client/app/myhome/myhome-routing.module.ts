@@ -8,6 +8,7 @@ import {RegisterComponent} from '../user/register.component';
 import {DeviceRegisterComponent} from '../device/deviceRegister.component';
 import {DeviceListComponent} from '../device/deviceList.component';
 import {UserListComponent} from '../user/userlist.component';
+import { HistoryComponent } from '../history/history.component';
 
 
 const myHomeRoutes: Routes = [
@@ -22,8 +23,14 @@ const myHomeRoutes: Routes = [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'register', component: RegisterComponent, canActivate: [AdminGuard] },
           { path: 'adddevice', component: DeviceRegisterComponent, canActivate: [AdminGuard]  },
-          { path: 'devices', component: DeviceListComponent  },
+          { path: 'devices', 
+            children:[
+              { path: '', component: DeviceListComponent },
+              { path:'history/:id', component: HistoryComponent }
+            ]
+          },
           { path: 'users', component: UserListComponent, canActivate: [AdminGuard]  },
+          { path: 'history/:id', component: HistoryComponent  },
           { path: '**', component: DashboardComponent }
         ],
       }

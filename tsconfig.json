@@ -21,7 +21,7 @@
       "./node_modules"
     ],
     "types": [
-      "node"
+      "node","googlemaps","google-maps"
     ]
   },
   "exclude": [

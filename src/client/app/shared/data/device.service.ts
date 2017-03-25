@@ -45,4 +45,16 @@ export class DeviceService {
         return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude).map((response: Response) => response.json());
     }
 
+    getHistory(id:string) {
+        return this.authHttp.get(CONTEXTROOT+"device/history").map((response: Response) => response.json());
+    }
+
+    getHistoryForDb(id:string, startdt:any, enddt:any) {
+        return this.authHttp.post(CONTEXTROOT+"device/history/json",{
+            "device_id":id,
+            "from_timestamp":startdt,
+            "to_timestamp":enddt
+        }).map((response: Response) => response.json());
+    }
+
 }

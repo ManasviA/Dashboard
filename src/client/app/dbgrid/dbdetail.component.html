@@ -1,83 +1,83 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">GPS LATITUDE</div>
-        <div class="col-sm-3">{{data.gpsdata.lat}}</div>
+        <div class="col-sm-5">LATITUDE</div>
+        <div class="col-sm-5">{{data.payload.lat}}</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">GPS LONGITUDE</div>
-        <div class="col-sm-3">{{data.gpsdata.lon}}</div>
+        <div class="col-sm-5">LONGITUDE</div>
+        <div class="col-sm-5">{{data.payload.lon}}</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">ACTIVE POWER</div>
-        <div class="col-sm-3">{{data.masterdata.ActivePower}} kW</div>
+        <div class="col-sm-5">ACTIVE POWER</div>
+        <div class="col-sm-5">{{data.payload.ActivePower}} kW</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">PH1</div>
-        <div class="col-sm-3" *ngIf="data.masterdata.PH1!=undefined">{{data.masterdata.PH1}} V</div>
-        <div class="col-sm-3" *ngIf="!data.masterdata.PH1!=undefined">NA</div>
+        <div class="col-sm-5">PH1</div>
+        <div class="col-sm-5" *ngIf="data.payload.VoltageR!=undefined">{{data.payload.vr}} V</div>
+        <div class="col-sm-5" *ngIf="!(data.payload.VoltageR!=undefined)">NA</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">PH2</div>
-        <div class="col-sm-3" *ngIf="data.masterdata.PH2!=undefined">{{data.masterdata.PH2}} V</div>
-        <div class="col-sm-3" *ngIf="!data.masterdata.PH1!=undefined">NA</div>
+        <div class="col-sm-5">PH2</div>
+        <div class="col-sm-5" *ngIf="data.payload.VoltageY!=undefined">{{data.payload.vy}} V</div>
+        <div class="col-sm-5" *ngIf="!(data.payload.VoltageY!=undefined)">NA</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">PH3</div>
-        <div class="col-sm-3" *ngIf="data.masterdata.PH3!=undefined">{{data.masterdata.PH3}} V</div>
-        <div class="col-sm-3" *ngIf="!data.masterdata.PH1!=undefined">NA</div>
+        <div class="col-sm-5">PH3</div>
+        <div class="col-sm-5" *ngIf="data.payload.VoltageB!=undefined">{{data.payload.vb}} V</div>
+        <div class="col-sm-5" *ngIf="!(data.payload.VoltageB!=undefined)">NA</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">ROOM TEMP</div>
-        <div class="col-sm-3">{{data.masterdata.RoomTemp}} C</div>
+        <div class="col-sm-5">ROOM TEMP</div>
+        <div class="col-sm-5">{{data.payload.rt}} C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">PLATE TEMP</div>
-        <div class="col-sm-3">{{data.masterdata.PlateTemp}} C</div>
+        <div class="col-sm-5">PLATE TEMP</div>
+        <div class="col-sm-5">{{data.payload.pt}} C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">CD TEMP</div>
-        <div class="col-sm-3">{{data.masterdata.CdTemp}} C</div>
+        <div class="col-sm-5">CD TEMP</div>
+        <div class="col-sm-5">{{data.payload.ct}} C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">AVG VOLTAGE</div>
-        <div class="col-sm-3">{{data.masterdata.AvgVoltage}} V</div>
+        <div class="col-sm-5">AVG VOLTAGE</div>
+        <div class="col-sm-5">{{data.payload.AvgVoltage}} V</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">TOTAL CURRENT</div>
-        <div class="col-sm-3">{{data.masterdata.TotalCurrent}} A</div>
+        <div class="col-sm-5">TOTAL CURRENT</div>
+        <div class="col-sm-5">{{data.payload.TotalCurrent}} A</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">TOT KWH</div>
-        <div class="col-sm-3">{{data.masterdata.TotalKwh}} kWh</div>
+        <div class="col-sm-5">TOT KWH</div>
+        <div class="col-sm-5">{{data.payload.TotalKwh}} kWh</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">BATTERY</div>
-        <div class="col-sm-3">{{data.localdata.battery}}</div>
+        <div class="col-sm-5">BATTERY</div>
+        <div class="col-sm-5">{{data.payload.battery}}</div>
         <div class="col-sm-1"></div>
     </div>
 </div>

@@ -1,0 +1,7 @@
+.datepicker-ul {
+    position:absolute;
+    z-index:999;
+}
+.bootstrap-timepicker-widget table td input {
+    padding:0px;
+}
