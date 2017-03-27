@@ -19,8 +19,9 @@
 }
 .tablerow .col.alerts {
     flex-grow:0;
-    width:60px;
-    color:#ca6767;
+    width:90px;
+   /* color:#ca6767;*/
+   color:#000000;
 }
 .tablerow .col.speed {
     flex-grow:0;
@@ -49,4 +50,24 @@
 }
 .dbgrid .panel-heading {
     padding:0px;
+}
+.dbicon {
+    width:20px;
+    height:20px;
+}
+.signal1 {
+    background: url(assets/images/signal.png);
+    background-position:-20px -20px;
+}
+.signal2 {
+    background: url(assets/images/signal.png);
+    background-position:0px -20px;
+}
+.signal3 {
+    background: url(assets/images/signal.png);
+    background-position:-20px 0px;
+}
+.signal4 {
+    background: url(assets/images/signal.png);
+    background-position:0px 0px;
 }

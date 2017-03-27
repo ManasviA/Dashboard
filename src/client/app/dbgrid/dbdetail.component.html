@@ -1,17 +1,47 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-5">LATITUDE</div>
+        <div class="col-sm-5"><strong>Lattitude</strong></div>
         <div class="col-sm-5">{{data.payload.lat}}</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-5">LONGITUDE</div>
+        <div class="col-sm-5"><strong>Longitude</strong></div>
         <div class="col-sm-5">{{data.payload.lon}}</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Battery Voltage</strong></div>
+        <div class="col-sm-5">{{data.payload.bt}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Compressor</strong></div>
+        <div class="col-sm-5">{{getBoolVal(data.payload.cr)}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Fan 1</strong></div>
+        <div class="col-sm-5">{{getBoolVal(data.payload.f1)}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Fan 2</strong></div>
+        <div class="col-sm-5">{{getBoolVal(data.payload.f2)}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>GSM Signal</strong></div>
+        <div class="col-sm-5">{{data.payload.gs}} %</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <!--<div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5">ACTIVE POWER</div>
         <div class="col-sm-5">{{data.payload.ActivePower}} kW</div>
@@ -79,5 +109,5 @@
         <div class="col-sm-5">BATTERY</div>
         <div class="col-sm-5">{{data.payload.battery}}</div>
         <div class="col-sm-1"></div>
-    </div>
+    </div>-->
 </div>

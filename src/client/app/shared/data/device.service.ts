@@ -42,7 +42,7 @@ export class DeviceService {
     }
 
     getAddress(longitude:any,latitude:any) {
-        return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude).map((response: Response) => response.json());
+        return this.http.get("//maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude).map((response: Response) => response.json());
     }
 
     getHistory(id:string) {

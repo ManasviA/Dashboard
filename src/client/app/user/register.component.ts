@@ -21,6 +21,7 @@ export class RegisterComponent {
         this.userService.create(this.model)
             .subscribe(
                 data => {
+                    this.loading = false;
                     if(data && data.message) {
                         this.alertService.success(data.message);
                     } else {
@@ -28,6 +29,7 @@ export class RegisterComponent {
                     }
                 },
                 error => {
+                    this.loading = false;
                     if(error && error.error) {
                         this.alertService.error(error.error);
                     } else {

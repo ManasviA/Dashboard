@@ -37,6 +37,7 @@ export class NewPassComponent implements OnInit{
         this.passwordService.resetPass(this.newPassObj)
             .subscribe(
                 data=> {
+                    this.loading = false;
                     this.passChanged=true;
                     if(data && data.message) {
                         this.alertService.success(data.message);

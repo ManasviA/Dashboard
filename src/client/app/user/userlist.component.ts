@@ -165,7 +165,7 @@ export class UserListComponent implements OnInit {
   }
 
   addNewUser() {
-      this.router.navigate(['user','register']);
+      this.router.navigate(['user','users','register']);
   }
 
   removeDevice(id:string) {

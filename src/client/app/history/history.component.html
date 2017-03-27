@@ -4,7 +4,7 @@
     </div>
      <hr/>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
         <label>From:</label>
         <datetime [(ngModel)]="startdt"></datetime>
             
@@ -18,7 +18,7 @@
             </div>-->
             
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <label>To:</label>
             <datetime [(ngModel)]="enddt"></datetime>
             <!--<div class="datepickerDiv">
@@ -30,7 +30,7 @@
                 </ul>
             </div>-->
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <br/><button class="btn btn-primary" (click)="getData()">Get Data</button>
             <button style="margin-left:10px" class="btn btn-primary" (click)="print()">Get PDF Report</button>
             <button style="margin-left:10px" class="btn btn-primary" (click)="getCSV()">Get CSV Report</button>

@@ -21,6 +21,7 @@ export class ResetComponent {
         this.passwordService.forgetPass(this.emailInput)
             .subscribe(
                 data=> {
+                    this.loading = false;
                     if(data && data.message) {
                         this.alertService.success(data.message);
                     }

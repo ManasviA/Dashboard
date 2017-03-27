@@ -68,3 +68,6 @@ img.img-side-title {
     height: 55px;
     vertical-align: inherit;
 }
+body .container.body .right_col {
+  background-color:#FFFFFF;
+}

@@ -173,7 +173,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   addNewDevice() {
-      this.router.navigate(['user','adddevice']);
+      this.router.navigate(['user','devices','adddevice']);
   }
 
   ngOnInit() { 

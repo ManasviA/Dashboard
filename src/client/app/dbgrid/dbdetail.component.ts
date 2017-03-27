@@ -14,4 +14,8 @@ import { Column } from './dbgrid.component'
 export class DbDetailComponent {
     @Input()
     data:any;
+
+    getBoolVal(val:any) {
+        return (val==0)?"OFF":"ON";
+    }
 }

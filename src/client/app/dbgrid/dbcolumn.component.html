@@ -7,9 +7,27 @@
         {{data.lastUpdated | date:"MM/dd/yy"}}
     </div>
     <div *ngIf="col.key=='alerts'">
-        <i title="Power Failure Alert" *ngIf="data.payload.PowerFail=='0'" class="fa fa-battery-empty" aria-hidden="true"></i>
-        <i title="SD Card Not Present" *ngIf="data.payload.CardPresent=='0'" class="fa fa-clipboard" aria-hidden="true"></i>
-        <i title="Internal Memory Not Available" *ngIf="data.payload.IntMemory=='0'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <!--<i title="Power Failure Alert" *ngIf="data.payload.PowerFail=='0'" class="fa fa-battery-empty" aria-hidden="true"></i>-->
+        <!--<i title="SD Card Not Present" *ngIf="data.payload.CardPresent=='0'" class="fa fa-clipboard" aria-hidden="true"></i>-->
+        <!--<i title="Internal Memory Not Available" *ngIf="data.payload.IntMemory=='0'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>-->
+        <img title="Compressor Off" *ngIf="data.payload.cr==0" class="dbicon" aria-hidden="true" src="assets/images/compressor.png"/>
+        <img title="Fan 1 Off" *ngIf="data.payload.f1==0" class="dbicon" aria-hidden="true" src="assets/images/fan.png"/>
+        <img title="Plate Temperature Probe Fail" *ngIf="data.payload.ptf=='Yes'" class="dbicon" aria-hidden="true" src="assets/images/plate.png"/>
+        <i title="Room Temperature Probe Fail" *ngIf="data.payload.rtf=='Yes'" class="fa fa-thermometer-full" aria-hidden="true" ></i>
+        <i title="CD Temperature Probe Fail" *ngIf="data.payload.ctf=='Yes'" class="fa fa-free-code-camp" aria-hidden="true" ></i>
+        <img title="Door Open" *ngIf="data.payload.do=='Yes'" class="dbicon" aria-hidden="true" src="assets/images/do.png"/>
+        <i title="HP Fault" *ngIf="data.payload.hpf=='Yes'" class="fa fa-times-rectangle" aria-hidden="true"></i>
+        <i title="LP Fault" *ngIf="data.payload.lpf=='Yes'" class="fa fa-window-close-o" aria-hidden="true"></i>
+        <i title="SPPR Fault" *ngIf="data.payload.spf=='Yes'" class="fa fa-warning" aria-hidden="true"></i>
+        <i title="CT Fail" *ngIf="data.payload.fi=='Yes'" class="fa fa-question-circle-o" aria-hidden="true" ></i>
+        <i title="Overload" *ngIf="data.payload.fj=='Yes'" class="fa fa-toggle-up" aria-hidden="true" ></i>
+        <i title="Underload" *ngIf="data.payload.fk=='Yes'" class="fa fa-toggle-down" aria-hidden="true" ></i>
+        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>=0 && data.payload.gs<=25" class="dbicon signal1" aria-hidden="true" ></div>
+        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>25 && data.payload.gs<=50" class="dbicon signal2" aria-hidden="true" ></div>
+        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>50 && data.payload.gs<=75" class="dbicon signal3" aria-hidden="true"></div>
+        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>75 && data.payload.gs<=100" class="dbicon signal4" aria-hidden="true"></div>
+
+        <!--<i title="Fan 1 On" *ngIf="data.payload.f1=='Yes'" class="fa fa-asterik" aria-hidden="true"></i>-->
     </div>
     <div *ngIf="col.key=='id'">
         <strong>{{data.id}}</strong>
@@ -30,6 +48,11 @@
     </div>
     <div *ngIf="col.key=='address'">
          {{data.address}}
+    </div>
+    <div *ngIf="col.key=='temp'">
+        Room Temp: {{data.payload.rt}} <br/>
+        Plate Temp: {{data.payload.pt}} <br/>
+        Cd Temp: {{data.payload.ct}} <br/>
     </div>
     <div *ngIf="col.key=='checkPoint'">
         Checkpoint

@@ -28,7 +28,7 @@ export class AuthService {
         // with the JWT on an id_token key
         data => { 
           this.userService.saveCurrentUser(data.user);
-          localStorage.setItem('id_token', data.id_token);
+          localStorage.setItem('id_token', data.token);
           return Observable.of(true);
         },
         error => {error=error.json(); this.alertService.error(error.error)}

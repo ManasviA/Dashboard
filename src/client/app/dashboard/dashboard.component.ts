@@ -56,9 +56,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	private cols:Array<Column>=[{key:'lineStatus',label:'Status'},
 		{key:'alerts',label:'Alerts'},
 		{key:'id',label:'Device ID/Name'},
+		{key:'temp',label:'Temperature'},
+		{key:'speed',label:'Speed'},
     	{key:'address',label:'Address'},
-		{key:'lastUpdated',label:'Last Updated'},
-		{key:'speed',label:'Speed'}
+		{key:'lastUpdated',label:'Last Updated'}
   ];
 
 	transform(devices:any) {

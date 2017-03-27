@@ -19,6 +19,19 @@ Released under the MIT license: http://jsbin.mit-license.org
  <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.9/highcharts.js"></script>
  <meta charset=utf-8 />
  <title>Tessol</title>
+ <style>
+      div.page-content
+      {
+        page-break-after: always;
+        page-break-inside: avoid;
+        border:solid 1px;
+        margin:10px;
+      }
+      .printonly
+      {
+        display:none
+      }
+ </style>
 
 </head>
 <body style="border:solid 1px;margin:10px;">
@@ -65,20 +78,49 @@ Released under the MIT license: http://jsbin.mit-license.org
             <td class="ct"></td>
         </tr>
     </table>
-    <p id="totalrec"></p>
-    <div id="container-highchart" style="width:70%; height: 400px; "></div>
-    <hr/>
-
-    <div id="dev_table">
-
-    </div>
-    
-
-    
-    
+    <p id="totalrec"></p>  
    </div>
   <!-- /.container -->
   
+ </div>
+ <div id="page-content ">
+   <div class="container">
+     <div class="printonly">
+     <h1 class="no-margin-top">Tessol</h1>
+    <h4>Temperature Report</h4>
+    <table class="table">
+        <tr>
+            <th>Report Name : Temperature</th>
+            <th id="deviceid"></th>
+        </tr>
+        <tr>
+            <th colspan="2" id="daterange"></th>
+        </tr>
+    </table>
+     </div>
+    <hr/>
+    <div id="container-highchart" style="width:70%; height: 400px; "></div>
+   </div>
+ </div>
+ <div id="page-content">
+   <div class="container">
+     <div class="printonly">
+   <h1 class="no-margin-top">Tessol</h1>
+    <h4>Temperature Report</h4>
+    <table class="table">
+        <tr>
+            <th>Report Name : Temperature</th>
+            <th id="deviceid"></th>
+        </tr>
+        <tr>
+            <th colspan="2" id="daterange"></th>
+        </tr>
+    </table>
+    </div>
+    <hr/>
+    <div id="dev_table">
+    </div>
+   </div>
  </div>
  <script>
     function getParameterByName(name, url) {
@@ -92,7 +134,7 @@ Released under the MIT license: http://jsbin.mit-license.org
     }
     var devdata;
 
-    $.post('http://localhost:8080/svc/core/api/device/history/json'+'?token='+getParameterByName("token"),{
+    $.post('/svc/core/api/device/history/json'+'?token='+getParameterByName("token"),{
       "device_id":getParameterByName("id"),
       "from_timestamp":getParameterByName("from"),
       "to_timestamp":getParameterByName("to")
