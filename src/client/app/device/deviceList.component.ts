@@ -27,8 +27,9 @@ export class DeviceListComponent implements OnInit {
   public maxSize:number = 5;
   public numPages:number = 1;
   public length:number = 0;
-  private data:Array<any>=[];
+  data:Array<any>=[];
   public rows:Array<any> = [];
+  public test:any="test";
   public columns:Array<any> = [
     {title: 'Device ID', name: 'id'},
     {title: 'Device Name',name: 'name'},
@@ -49,6 +50,9 @@ export class DeviceListComponent implements OnInit {
     return data.slice(start, end);
   }
 
+viewHistory() {
+  console.log("View History");
+}
   public changeSort(data:any, config:any):any {
     if (!config.sorting) {
       return data;
@@ -146,7 +150,7 @@ export class DeviceListComponent implements OnInit {
                       row.userString="";
                       row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
                       row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-                      row.historyString="<a class=\"btn btn-primary btn-sm\">View History</a>";
+                      row.historyString="<a class=\"btn btn-primary btn-sm\" (click)=\"viewHistory()\">View History{{test}}</a>";
                       return row;
                   });
                   this.onChangeTable(this.config);
@@ -189,7 +193,7 @@ export class DeviceListComponent implements OnInit {
             row.userString="";
             row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
             row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-            row.historyString="<a class=\"btn btn-primary btn-sm\">View History</a>";
+            row.historyString="<a class=\"btn btn-primary btn-sm btn-sm\" (click)=\"viewHistory()\">View History{{test}}</a>";
             return row;
         });
         vm.onChangeTable(this.config);

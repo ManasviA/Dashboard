@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   password:string;
   message:string;
 
-  constructor(private auth: AuthService, private router:Router,private alertService:AlertService) {}
+  constructor(public auth: AuthService, private router:Router,private alertService:AlertService) {}
 
   ngOnInit() {
       this.router.events.subscribe(event => {

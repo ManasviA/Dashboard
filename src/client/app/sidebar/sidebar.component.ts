@@ -11,8 +11,8 @@ import { UserService } from '../shared/data/user.service';
 })
 export class SideBarComponent implements OnInit {
 
-  private userName:string;
-  private userType:string;
+  userName:string;
+  userType:string;
   constructor(private userService: UserService) {}
 
   /**

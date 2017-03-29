@@ -22,7 +22,7 @@
       "./node_modules"
     ],
     "types": [
-      "node","googlemaps","google-maps"
+      "node","googlemaps"
     ]
   },
   "exclude": [

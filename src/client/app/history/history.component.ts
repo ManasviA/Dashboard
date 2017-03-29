@@ -5,6 +5,7 @@ import { Component, Input, OnInit, ViewEncapsulation, ViewChild } from '@angular
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DeviceService } from '../shared/data/device.service';
 import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
 import 'bootstrap-timepicker/js/bootstrap-timepicker.js';
 import { CONTEXTROOT } from '../shared/contextRoot';
@@ -31,16 +32,17 @@ export class HistoryComponent implements OnInit {
   @ViewChild('csvframe') csvframe:any; 
 
   private data: any;
-  private deviceId:any;
+  deviceId:any;
   private startOpened: boolean;
-  private startdt: Date = new Date();
+  startdt: Date = new Date();
   private endOpened: boolean;
-  private enddt: Date = new Date();
+  enddt: Date = new Date();
   private minDate: Date = void 0;
   private activeView: string = 'db';
-  private dateEntered: boolean = false;
+  dateEntered: boolean = false;
   private map:any;
   private marker:any;
+  private loading:any;
   date: Date;
 
   ngOnInit() {
@@ -102,10 +104,12 @@ export class HistoryComponent implements OnInit {
 
   getData(): void {
     this.dateEntered = true;
+    this.loading = true;
     this.route.params
           .switchMap((params: Params) => this.deviceService.getHistoryForDb(params['id'],(new Date(this.startdt)).toISOString(),(new Date(this.enddt)).toISOString()))
           .subscribe((data: any) => {
             this.data = data;
+            this.loading = false;
             switch (this.activeView) {
                 case 'map':
                   this.renderMap();
@@ -200,6 +204,7 @@ export class HistoryComponent implements OnInit {
 
   renderMap() {
     setTimeout(()=>{
+      if(this.data.historic_logs.length) {
       var polyline = new google.maps.Polyline({
             path: [],
             strokeColor: '#FF0000',
@@ -212,31 +217,29 @@ export class HistoryComponent implements OnInit {
           });
           
           this.data.historic_logs.forEach((point:any)=>{
-            var nextPoint=new google.maps.LatLng(point.payload.lat, point.payload.lon);
-            polyline.getPath().push(nextPoint);
-            bounds.extend(nextPoint);
-            var marker=new google.maps.Marker({
-                position: nextPoint,
-                title: '#' + polyline.getPath().getLength(),
-                map: this.map
-            });
-            var infowindow = new google.maps.InfoWindow({
-              content: "<div><b>Date:</b>"+new Date(point.created_at)+"<br/><b>Room Temp:</b>"+point.payload.rt
-              +"<br/><b>Cd Temp:</b>"+point.payload.ct
-              +"<br/><b>Plate Temp:</b>"+point.payload.pt
-              +" </div>"
-            });
-            marker.addListener('click', function() {
-              infowindow.open(this.map, marker);
-            });
-          });
-          new google.maps.Marker({
-              position: {lat: parseInt(this.data.historic_logs[0].payload.lat), lng: parseInt(this.data.historic_logs[0].payload.lat)},
-              map: this.map,
-              icon:'assets/images/Jeep.png'
+            if(point.payload.lat && point.payload.lon) {
+              var nextPoint=new google.maps.LatLng(point.payload.lat, point.payload.lon);
+              polyline.getPath().push(nextPoint);
+              bounds.extend(nextPoint);
+              var marker=new google.maps.Marker({
+                  position: nextPoint,
+                  title: '#' + polyline.getPath().getLength(),
+                  map: this.map
+              });
+              var infowindow = new google.maps.InfoWindow({
+                content: "<div><b>Date:</b>"+new Date(point.created_at)+"<br/><b>Room Temp:</b>"+point.payload.rt
+                +"<br/><b>Cd Temp:</b>"+point.payload.ct
+                +"<br/><b>Plate Temp:</b>"+point.payload.pt
+                +" </div>"
+              });
+              marker.addListener('click', function() {
+                infowindow.open(this.map, marker);
+              });
+            }
           });
           polyline.setMap(this.map);
           this.map.fitBounds(bounds);
+      }
     },500);
     
   }
@@ -258,7 +261,7 @@ export class HistoryComponent implements OnInit {
   }
 
   print() {
-    window.open("print.html?id="+this.deviceId+"&from="+(new Date(this.startdt)).toISOString()+"&to="+(new Date(this.startdt)).toISOString()+"&token="+localStorage.getItem('id_token').replace("Bearer ",""));
+    window.open("print.html?id="+this.deviceId+"&from="+(new Date(this.startdt)).toISOString()+"&to="+(new Date(this.enddt)).toISOString()+"&token="+localStorage.getItem('id_token').replace("Bearer ",""));
   }
 
   getCSV() {

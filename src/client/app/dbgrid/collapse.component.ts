@@ -5,28 +5,28 @@ import {Directive, Input, HostBinding} from '@angular/core';
 export class Collapse {
     // style
     @HostBinding('style.height')
-    private height:string;
+    height:string;
     // shown
     @HostBinding('class.in')
     @HostBinding('attr.aria-expanded')
-    private isExpanded:boolean = true;
+    isExpanded:boolean = true;
     // hidden
     @HostBinding('attr.aria-hidden')
-    private isCollapsed:boolean = false;
+    isCollapsed:boolean = false;
     // stale state
     @HostBinding('class.collapse')
-    private isCollapse:boolean = true;
+    isCollapse:boolean = true;
     // animation state
     @HostBinding('class.collapsing')
-    private isCollapsing:boolean = false;
+    isCollapsing:boolean = false;
 
     @Input()
-    private set collapse(value:boolean) {
+    set collapse(value:boolean) {
         this.isExpanded = value;
         this.toggle();
     }
 
-    private get collapse():boolean {
+    get collapse():boolean {
         return this.isExpanded;
     }
 

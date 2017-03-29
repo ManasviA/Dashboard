@@ -23,8 +23,10 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
-       //{src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'}
+       {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
+        {src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
+        { src: 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js', inject: 'libs' },
+        { src: 'bootstrap-timepicker/js/bootstrap-timepicker.min.js', inject: 'libs' }
     ];
 
     // Add `local` third-party libraries to be injected/bundled.

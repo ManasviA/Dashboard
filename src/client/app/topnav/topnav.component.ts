@@ -10,7 +10,7 @@ import { UserService } from '../shared/data/user.service';
 })
 export class TopNavComponent implements OnInit {
 
-  private userName:string;
+  userName:string;
   constructor(public userService: UserService) {}
 
   /**

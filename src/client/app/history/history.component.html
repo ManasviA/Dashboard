@@ -48,7 +48,9 @@
             <template tabHeading>
                 Map View
             </template>
-            <div id="maphistory" style="height:500px"></div>
+            <div id="maphistory" style="height:500px">
+                <span *ngIf="!(data && data.historic_logs.length) && !loading">No Data Available</span>
+            </div>
         </tab>
         <!--<tab (select)="selectTab('table')" [active]="activeView=='table'">
             <template tabHeading>

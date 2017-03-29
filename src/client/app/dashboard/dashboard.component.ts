@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private dataservice:DataService,private deviceService:DeviceService) {}
 
   private timerSubscription:any;
+  searchText:any;
 
 	ngOnInit() { 
 		this.dataservice.getDashBoardData().subscribe(data=>{
@@ -51,9 +52,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	private onlineDevices:Array<any>=[];
 	private offlineDevices:Array<any>=[];
-	private rows:Array<any>=[];
+	rows:Array<any>=[];
 	
-	private cols:Array<Column>=[{key:'lineStatus',label:'Status'},
+	cols:Array<Column>=[{key:'lineStatus',label:'Status'},
 		{key:'alerts',label:'Alerts'},
 		{key:'id',label:'Device ID/Name'},
 		{key:'temp',label:'Temperature'},

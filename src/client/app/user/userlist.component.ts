@@ -28,7 +28,7 @@ export class UserListComponent implements OnInit {
   public maxSize:number = 5;
   public numPages:number = 1;
   public length:number = 0;
-  private data:Array<any>=[];
+  data:Array<any>=[];
   public rows:Array<any> = [];
   editUser:any={};
   public columns:Array<any> = [
