@@ -1,13 +1,13 @@
 <div>
     <div class="row">
-        <div class="col-sm-10"><h1>Devices <small>({{data.length}})</small></h1></div>
+        <div class="col-sm-10"><h1><span class="fa fa-tablet page-heading"></span> Devices ({{data.length}})</h1></div>
         <div class="col-sm-2" *ngIf="userType=='admin'"><button (click)="addNewDevice()"><span class="glyphicon glyphicon glyphicon-plus-sign"></span> Add New Device</button></div>
     </div>
     <hr/>
     <div class="row">
         <alert></alert>
         <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <input *ngIf="config.filtering" placeholder="Filter all columns"
                 [ngTableFiltering]="config.filtering"
                 class="form-control"

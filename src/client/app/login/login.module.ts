@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
 import {SharedModule} from '../shared/shared.module';
+import { CarouselModule } from 'ng2-bootstrap';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -18,7 +19,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 
 @NgModule({
-  imports:[LoginRoutingModule, FormsModule, BrowserModule, CommonModule, SharedModule.forRoot()],
+  imports:[LoginRoutingModule, FormsModule, BrowserModule, CommonModule, CarouselModule.forRoot(), SharedModule.forRoot()],
   declarations: [LoginComponent,ResetComponent,NewPassComponent],
   providers: [{
     provide: AuthHttp,

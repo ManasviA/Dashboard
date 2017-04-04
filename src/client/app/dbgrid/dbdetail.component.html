@@ -1,14 +1,68 @@
-<div class="container">
+<div class="container dbdetail-container">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-5"><strong>Lattitude</strong></div>
-        <div class="col-sm-5">{{data.payload.lat}}</div>
+        <div class="col-sm-5"><strong>Room Temp</strong></div>
+        <div class="col-sm-5">{{data.payload.rt}} &deg;C</div>
+        <div class="col-sm-1"></div>
+    </div>
+   <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Plate Temp</strong></div>
+        <div class="col-sm-5">{{data.payload.pt}} &deg;C</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-5"><strong>Longitude</strong></div>
-        <div class="col-sm-5">{{data.payload.lon}}</div>
+        <div class="col-sm-5"><strong>Cd Temp</strong></div>
+        <div class="col-sm-5">{{data.payload.ct}} &deg;C</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>GSM Signal</strong></div>
+        <div class="col-sm-5">{{data.payload.gs}} %</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Door Open</strong></div>
+        <div class="col-sm-5">{{data.payload.do}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="data.payload.ptf=='Yes'">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Plate Temperature Probe Fail</strong></div>
+        <div class="col-sm-5">{{data.payload.ptf}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="data.payload.rtf=='Yes'">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Room Temperature Probe Fail</strong></div>
+        <div class="col-sm-5">{{data.payload.rtf}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="data.payload.ctf=='Yes'">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>Cd Temperature Probe Fail</strong></div>
+        <div class="col-sm-5">{{data.payload.ctf}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="data.payload.hpf=='Yes'">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>HP Fault</strong></div>
+        <div class="col-sm-5">{{data.payload.hpf}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="data.payload.lpf=='Yes'">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>LP Fault</strong></div>
+        <div class="col-sm-5">{{data.payload.lpf}}</div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="data.payload.spf=='Yes'">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5"><strong>SPPR Fault</strong></div>
+        <div class="col-sm-5">{{data.payload.spf}}</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
@@ -25,20 +79,8 @@
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-5"><strong>Fan 1</strong></div>
-        <div class="col-sm-5">{{getBoolVal(data.payload.f1)}}</div>
-        <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5"><strong>Fan 2</strong></div>
-        <div class="col-sm-5">{{getBoolVal(data.payload.f2)}}</div>
-        <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5"><strong>GSM Signal</strong></div>
-        <div class="col-sm-5">{{data.payload.gs}} %</div>
+        <div class="col-sm-5"><strong>Address</strong></div>
+        <div class="col-sm-5">{{data.address}}</div>
         <div class="col-sm-1"></div>
     </div>
     <!--<div class="row">

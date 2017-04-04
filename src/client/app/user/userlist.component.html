@@ -1,13 +1,13 @@
 <div>
     <div class="row">
-        <div class="col-sm-10"><h1>Users <small>({{data.length}})</small></h1></div>
+        <div class="col-sm-10"><h1><span class="fa fa-user page-heading"></span> Users ({{data.length}})</h1></div>
         <div class="col-sm-2"><button (click)="addNewUser()"><span class="glyphicon glyphicon-user"></span>  Add User</button></div>
     </div>
     <hr/>
     <div class="row">
         <alert></alert>
         <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <input *ngIf="config.filtering" placeholder="Filter all columns"
                 [ngTableFiltering]="config.filtering"
                 class="form-control"
@@ -38,9 +38,9 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Assign Device</h4>
-                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-                </button>
+                </span>
             </div>
             <div class="modal-body">
                 <div class="container" *ngIf="editUser.role!='admin'">         

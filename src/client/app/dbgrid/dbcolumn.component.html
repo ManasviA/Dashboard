@@ -1,7 +1,7 @@
 <div>
     <div *ngIf="col.key=='lineStatus'">
         <span [ngClass]="[data.lineStatus,'glyphicon', 'glyphicon-cloud']" title="{{data.lineStatus}}"></span>
-        <div style="font-size:10px;">{{data.lineStatus}}</div>
+        <div [ngClass]="[data.lineStatus]" style="font-size:10px;">{{data.lineStatus}}</div>
     </div>
     <div *ngIf="col.key=='lastUpdated'">
         {{data.lastUpdated | date:"MM/dd/yy"}}

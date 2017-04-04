@@ -3,7 +3,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import {Router} from '@angular/router';
-import {AlertService} from '../shared/data/alert.service'
+import {AlertService} from '../shared/data/alert.service';
+
 
 interface Credentials {
   email: string,
@@ -23,6 +24,9 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   message:string;
+  noWrapSlides:boolean = false;
+  myInterval:any = 5000;
+  slides:any = ['assets/images/banner01.jpg','assets/images/banner02.jpg','assets/images/banner03.jpg','assets/images/banner04.jpg','assets/images/banner05.jpg','assets/images/banner06.jpg'];
 
   constructor(public auth: AuthService, private router:Router,private alertService:AlertService) {}
 

@@ -36,6 +36,7 @@
     font-size:20px;
 }
 .tablerow .col.lineStatus .Offline {
+    color: #e62117;
     font-size:20px;
 }
 .tablerow .colheader {
@@ -44,6 +45,9 @@
     flex-grow:1;
     color: #73879C;
     height:50px;
+}
+.tablerow:hover {
+    background:#daeffd!important;
 }
 .dbgrid.panel-group {
     margin-bottom:0px;
@@ -70,4 +74,10 @@
 .signal4 {
     background: url(assets/images/signal.png);
     background-position:0px 0px;
+}
+.device-modal .modal-dialog.modal-lg {
+    width:1000px;
+}
+.dbdetail-container .row {
+    border-bottom:1px solid rgba(0,0,0,0.1);
 }
