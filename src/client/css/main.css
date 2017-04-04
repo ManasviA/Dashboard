@@ -106,3 +106,20 @@ div.login-carousel {
     75%  {background:url('../assets/images/banner04.jpg');}
     100% {background:url('../assets/images/banner05.jpg');}
 }
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: middle;
+  text-align:center;
+}
+.loading-spinner {
+    display : block;
+    position : fixed;
+    z-index: 100;
+    background-image : url('../assets/images/loading.gif');
+    opacity : 0.4;
+    background-repeat : no-repeat;
+    background-position : center;
+    left : 0;
+    bottom : 0;
+    right : 0;
+    top : 0;
+}

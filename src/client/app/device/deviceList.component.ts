@@ -193,7 +193,7 @@ viewHistory() {
             row.userString="";
             row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
             row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-            row.historyString="<a class=\"btn btn-primary btn-sm btn-sm\" (click)=\"viewHistory()\">View History{{test}}</a>";
+            row.historyString="<a class=\"btn btn-primary btn-sm btn-sm\" (click)=\"viewHistory()\">View History</a>";
             return row;
         });
         vm.onChangeTable(this.config);

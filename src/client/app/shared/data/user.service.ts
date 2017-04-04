@@ -37,6 +37,10 @@ export class UserService {
         return this.authHttp.post(CONTEXTROOT+'user/add', user).map((response: Response) => response.json());
     }
 
+    saveProfile(user: User) {
+        return this.authHttp.post(CONTEXTROOT+'user/update', user).map((response: Response) => response.json());
+    }
+
     // update(user: User) {
     //     return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     // }

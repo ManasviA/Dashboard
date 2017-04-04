@@ -47,7 +47,7 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() {
     (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
-    (this.startdt = new Date()).setHours(this.startdt.getHours() - 3);
+    (this.startdt = new Date()).setHours(this.startdt.getHours() - 24);
     this.route.params
           .subscribe((params: Params) => {
             this.deviceId=params['id'];

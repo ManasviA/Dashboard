@@ -9,6 +9,7 @@ import {DeviceRegisterComponent} from '../device/deviceRegister.component';
 import {DeviceListComponent} from '../device/deviceList.component';
 import {UserListComponent} from '../user/userlist.component';
 import { HistoryComponent } from '../history/history.component';
+import { ProfileComponent } from '../user/editprofile.component';
 
 
 const myHomeRoutes: Routes = [
@@ -35,6 +36,7 @@ const myHomeRoutes: Routes = [
             ]
           },
           { path: 'history/:id', component: HistoryComponent  },
+          { path: 'editprofile', component: ProfileComponent  },
           { path: '**', component: DashboardComponent }
         ],
       }

@@ -1,7 +1,10 @@
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-    <alert></alert>
-    <h2>Add Device</h2>
+<div>
+    <div class="row">
+        <div class="col-sm-12"><h1><span class="fa fa-tablet page-heading"></span> Add Device</h1></div>
+    </div>
+    <hr/>
+    <div class="row">
+        <alert></alert>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !id.valid }">
             <label for="id">Device ID</label>
@@ -29,5 +32,5 @@
             <!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->
         </div>
     </form>
-</div>
+    </div>
 </div>

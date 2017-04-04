@@ -19,6 +19,7 @@ import {DbDetailComponent} from '../dbgrid/dbdetail.component';
 import { SharedModule } from '../shared/shared.module';
 import {Collapse} from '../dbgrid/collapse.component';
 import {RegisterComponent} from '../user/register.component';
+import {ProfileComponent} from '../user/editprofile.component';
 import {UserListComponent} from '../user/userlist.component';
 import {DeviceRegisterComponent} from '../device/deviceRegister.component';
 import {DeviceListComponent} from '../device/deviceList.component';
@@ -30,7 +31,7 @@ import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 
 @NgModule({
   imports: [BrowserModule, HttpModule,Ng2TableModule,PaginationModule.forRoot(),ModalModule.forRoot(),DropdownModule.forRoot(),TabsModule.forRoot(), DatepickerModule.forRoot(), NKDatetimeModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
-  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe,HistoryComponent],
+  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe,HistoryComponent, ProfileComponent],
   providers: [],
   bootstrap: [MyHomeComponent]
 
