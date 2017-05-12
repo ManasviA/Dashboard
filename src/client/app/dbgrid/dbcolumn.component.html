@@ -4,7 +4,7 @@
         <div [ngClass]="[data.lineStatus]" style="font-size:10px;">{{data.lineStatus}}</div>
     </div>
     <div *ngIf="col.key=='lastUpdated'">
-        {{data.lastUpdated | date:"MM/dd/yy"}}
+        {{data.lastUpdated | date:"medium"}}
     </div>
     <div *ngIf="col.key=='alerts'">
         <!--<i title="Power Failure Alert" *ngIf="data.payload.PowerFail=='0'" class="fa fa-battery-empty" aria-hidden="true"></i>-->
