@@ -207,7 +207,7 @@ export class HistoryComponent implements OnInit {
       if(this.data.historic_logs.length) {
       var polyline = new google.maps.Polyline({
             path: [],
-            strokeColor: '#FF0000',
+            strokeColor: '#00b3fd',
             strokeWeight: 3
           });
           var bounds = new google.maps.LatLngBounds();
@@ -216,7 +216,7 @@ export class HistoryComponent implements OnInit {
             zoom: 10
           });
           
-          this.data.historic_logs.forEach((point:any)=>{
+          this.data.historic_logs.forEach((point:any, index:any)=>{
             if(point.payload.lat && point.payload.lon) {
               var nextPoint=new google.maps.LatLng(point.payload.lat, point.payload.lon);
               polyline.getPath().push(nextPoint);
@@ -224,7 +224,8 @@ export class HistoryComponent implements OnInit {
               var marker=new google.maps.Marker({
                   position: nextPoint,
                   title: '#' + polyline.getPath().getLength(),
-                  map: this.map
+                  map: this.map,
+                  icon: (index == 0) ? 'assets/images/flag.png':'assets/images/dot.png'
               });
               var infowindow = new google.maps.InfoWindow({
                 content: "<div><b>Date:</b>"+new Date(point.created_at)+"<br/><b>Room Temp:</b>"+point.payload.rt
@@ -245,19 +246,19 @@ export class HistoryComponent implements OnInit {
   }
 
   getDOData() {
-    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at).getTime(), data.payload.do=="Yes"?1:0]);
+    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at+"Z").getTime(), data.payload.do=="Yes"?1:0]);
   }
 
   getRTData() {
-    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at).getTime(), data.payload.rt]);
+    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at+"Z").getTime(), data.payload.rt]);
   }
 
   getPTData() {
-    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at).getTime(), data.payload.pt]);
+    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at+"Z").getTime(), data.payload.pt]);
   }
 
   getCTData() {
-    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at).getTime(), data.payload.ct]);
+    return this.data.historic_logs.map((data:any)=>[new Date(data.created_at+"Z").getTime(), data.payload.ct]);
   }
 
   print() {
