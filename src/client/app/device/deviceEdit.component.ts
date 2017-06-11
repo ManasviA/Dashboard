@@ -10,10 +10,10 @@ import 'jquery/dist/jquery.min.js';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'deviceRegister.component.html'
+    templateUrl: 'deviceEdit.component.html'
 })
 
-export class DeviceRegisterComponent implements OnInit{
+export class DeviceEditComponent implements OnInit{
     model: any = {};
     loading = false;
     alert:string;
@@ -72,6 +72,11 @@ export class DeviceRegisterComponent implements OnInit{
 
     nextStep() {
         this.step++;
+        if(this.step === 3 && this.model.geofence_enabled==='true') {
+            setTimeout(()=> { 
+                this.initMap();
+            },500);
+        }
     }
 
     previousStep() {
@@ -80,7 +85,7 @@ export class DeviceRegisterComponent implements OnInit{
 
     register() {
         this.loading = true;
-        this.deviceService.create(this.model)
+        this.deviceService.edit(this.model)
             .subscribe(
                 data => {
                     this.loading=false;
@@ -117,10 +122,20 @@ export class DeviceRegisterComponent implements OnInit{
 //Function called to initialize / create the map.
 //This is called when the page has loaded.
 initMap() {
+
+    var lat = 19.37334071336406, lon = 73.13323974609375;
  
     //The center location of our map.
-    var centerOfMap = new google.maps.LatLng(19.37334071336406, 73.13323974609375);
- 
+    if(this.model.lat && this.model.lat!="") {
+        lat = parseFloat(this.model.lat);
+    }
+
+    if(this.model.lon && this.model.lon!="") {
+        lon = parseFloat(this.model.lon);
+    }
+
+    var centerOfMap = new google.maps.LatLng(lat,lon);
+
     //Map options.
     var options = {
       center: centerOfMap, //Set center.
@@ -129,7 +144,30 @@ initMap() {
  
     //Create the map object.
     this.map = new google.maps.Map(document.getElementById('map'), options);
- 
+
+    if(this.model.lat && this.model.lat!="" && this.model.lon && this.model.lon!="") {
+        this.marker = new google.maps.Marker({
+                position: centerOfMap,
+                map: this.map,
+                draggable: true //make it draggable
+            });
+    }
+
+    if(this.model.radius && this.model.radius!="") {
+        this.mapCircle && this.mapCircle.setMap(null);
+        var that = this;
+        this.mapCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: that.map,
+            center: that.marker.getPosition(),
+            radius: parseInt(that.model.radius)*1000
+        });
+    }
+
     //Listen for any clicks on the map.
     google.maps.event.addListener(this.map, 'click', (event:any) => {                
         //Get the location that the user clicked.

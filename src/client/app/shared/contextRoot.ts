@@ -1,1 +1,1 @@
-export let CONTEXTROOT="http://localhost:8080/svc/core/api/";
+export let CONTEXTROOT="/svc/core/api/";

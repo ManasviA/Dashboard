@@ -40,7 +40,8 @@ export class UserListComponent implements OnInit {
     {title: 'Role', name: 'role'},
     {title: 'Devices', name: 'deviceString'},
     {title: 'Action', name: 'actionString'},
-    {title: '', name:'deleteActionString'}
+    {title: '', name:'deleteActionString'},
+    {title: '', name:'viewLogActionString'}
    ];
   public config:any = {
     paging: true,
@@ -160,6 +161,8 @@ export class UserListComponent implements OnInit {
                     }
                 });
       }
+    } else if(data.column==="viewLogActionString"){
+        this.router.navigate(['user','activity',data.row.email]);
     }
     
   }
@@ -224,6 +227,7 @@ export class UserListComponent implements OnInit {
             row.role=row.user_detail.role;
             row.actionString="<a class=\"btn btn-primary btn-sm\">Assign Devices</a>";
             row.deleteActionString="<a class=\"btn btn-primary btn-sm\">Delete User</a>";
+            row.viewLogActionString = "<a class=\"btn btn-primary btn-sm\">View Activity Log</a>";
             return row;
         });
         this.onChangeTable(this.config);
@@ -250,6 +254,7 @@ export class UserListComponent implements OnInit {
             row.role=row.user_detail.role;
             row.actionString="<a class=\"btn btn-primary btn-sm\">Assign Devices</a>";
             row.deleteActionString="<a class=\"btn btn-primary btn-sm\">Delete User</a>";
+            row.viewLogActionString = "<a class=\"btn btn-primary btn-sm\">View Activity Log</a>";
             return row;
         });
         vm.onChangeTable(this.config);

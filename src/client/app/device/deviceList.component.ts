@@ -173,6 +173,10 @@ viewHistory() {
       }
     } else if(data.column=="historyString") {
         this.router.navigate(["user","devices","history",data.row.id]);
+    } else if(data.column=="viewConfigString") {
+        this.router.navigate(["user","devices","adddevice","view",data.row.id]);
+    } else if(data.column=="editConfigString") {
+        this.router.navigate(["user","devices","adddevice","edit",data.row.id]);
     }
   }
 
@@ -188,12 +192,16 @@ viewHistory() {
       this.columns.push({title: 'Action', name: 'actionString'});
       this.columns.push({title: 'View History', name: 'historyString'});
     }
+    this.columns.push({title: '', name: 'viewConfigString'});
+    this.columns.push({title: '', name: 'editConfigString'});
     this.deviceService.getAllDevices().subscribe(data=>{
         vm.data=data.map((row:any)=>{
             row.userString="";
             row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
             row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-            row.historyString="<a class=\"btn btn-primary btn-sm btn-sm\" (click)=\"viewHistory()\">View History</a>";
+            row.historyString="<a class=\"btn btn-primary btn-sm btn-sm\">View History</a>";
+            row.viewConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >View Config</a>";
+            row.editConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >Edit Config</a>";
             return row;
         });
         vm.onChangeTable(this.config);

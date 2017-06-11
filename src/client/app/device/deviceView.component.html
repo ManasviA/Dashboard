@@ -1,22 +1,20 @@
 <div>
     <div class="row">
         <div class="col-sm-12">
-            <h1><span class="fa fa-tablet page-heading"></span> Add Device</h1>
+            <h1><span class="fa fa-tablet page-heading"></span> View Device Configuration</h1>
         </div>
     </div>
     <hr/>
     <div class="row" *ngIf="step === 1">
         <alert></alert>
-        <form name="form" (ngSubmit)="f.form.valid && nextStep()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !id.valid }">
+        <form name="form" (ngSubmit)="nextStep()" #f="ngForm" novalidate>
+            <div class="form-group">
                 <label for="id">Device ID</label>
-                <input type="text" [disabled]="mode!='Add'" class="form-control" name="id" [(ngModel)]="model.id" #id="ngModel" required />
-                <div *ngIf="f.submitted && !id.valid" class="help-block">Device ID is required</div>
+                <input type="text" [disabled]="mode!='Add'" class="form-control" name="id" [(ngModel)]="model.id" #id="ngModel" />
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+            <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" [disabled]="mode=='View'" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
-                <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+                <input type="text" [disabled]="mode=='View'" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" />
             </div>
             <div class="form-group">
                 <label for="vn">Vehicle Number</label>
@@ -44,7 +42,7 @@
     </div>
     <div class="row" *ngIf="step === 2">
         <alert></alert>
-        <form name="form" (ngSubmit)="f1.form.valid && nextStep()" #f1="ngForm" novalidate>
+        <form name="form" (ngSubmit)="nextStep()" #f1="ngForm" novalidate>
             <div class="form-group">
                 <label for="comm_intval">Communication Interval</label>
                 <input type="text" [disabled]="mode=='View'" class="form-control" name="comm_intval" [(ngModel)]="model.comm_intval" />
@@ -63,31 +61,31 @@
             </div>
             <div class="form-group">
                 <label for="memalarm">Memory Alarm</label><br/>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="yes" name="memalarm" [(ngModel)]="model.mem_alarm"> Yes </label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="no" name="memalarm" [(ngModel)]="model.mem_alarm"> No </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="yes" name="memalarm" [(ngModel)]="model.mem_alarm"> Yes </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="no" name="memalarm" [(ngModel)]="model.mem_alarm"> No </label>
             </div>
             <div class="form-group">
                 <label for="debugmode">Debug Mode</label><br/>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="on" name="debugmode" [(ngModel)]="model.debug_mode"> On </label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="off" name="debugmode" [(ngModel)]="model.debug_mode"> Off </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="on" name="debugmode" [(ngModel)]="model.debug_mode"> On </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="off" name="debugmode" [(ngModel)]="model.debug_mode"> Off </label>
             </div>
             <div class="form-group">
                 <label for="sdcrecording">SD Card Recording</label><br/>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="on" name="sdcrecording" [(ngModel)]="model.sdc_recording"> On </label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="off" name="sdcrecording" [(ngModel)]="model.sdc_recording"> Off </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="on" name="sdcrecording" [(ngModel)]="model.sdc_recording"> On </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="off" name="sdcrecording" [(ngModel)]="model.sdc_recording"> Off </label>
             </div>
             <div class="form-group">
                 <label for="weeklyreport">Weekly Report</label><br/>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="yes" name="weeklyreport" [(ngModel)]="model.weekly_report"> Yes </label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="no" name="weeklyreport" [(ngModel)]="model.weekly_report"> No </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="yes" name="weeklyreport" [(ngModel)]="model.weekly_report"> Yes </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="no" name="weeklyreport" [(ngModel)]="model.weekly_report"> No </label>
             </div>
             <div class="form-group">
                 <label for="sendalerts">Send Alerts</label><br/>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="yes" name="sendalerts" [(ngModel)]="model.send_alerts"> Yes </label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value="no" name="sendalerts" [(ngModel)]="model.send_alerts"> No </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="yes" name="sendalerts" [(ngModel)]="model.send_alerts"> Yes </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value="no" name="sendalerts" [(ngModel)]="model.send_alerts"> No </label>
             </div>
             <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary" (click)="previousStep()">Back</button>
+                <button [disabled]="loading" (click)="previousStep()" class="btn btn-primary">Back</button>
                 <button [disabled]="loading" class="btn btn-primary">Next</button>
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                 />
@@ -100,12 +98,11 @@
         <form name="form" (ngSubmit)="f2.form.valid && register()" #f2="ngForm" novalidate>
             <div class="form-group">
                 <label for="comm_intval">Geofence Enabled</label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value=true name="geofenceenabled" (change)="handleChange($event)" [(ngModel)]="model.geofence_enabled"> Yes </label>
-                <label class="radio-inline"><input type="radio" [disabled]="mode=='View'" value=false name="geofenceenabled" (change)="handleChange($event)" [(ngModel)]="model.geofence_enabled"> No </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" value=true name="geofenceenabled" (change)="handleChange($event)" [(ngModel)]="model.geofence_enabled"> Yes </label>
+                <label class="radio-inline"><input type="radio" [attr.disabled]="mode=='View'" name="geofenceenabled" (change)="handleChange($event)" [(ngModel)]="model.geofence_enabled"> No </label>
             </div>
             <div class="form-group" *ngIf="model.geofence_enabled!== 'true'">
-                                            <button *ngIf="mode !== 'View'" [disabled]="loading" (click)="previousStep()" class="btn btn-primary">Back</button>
-                <button [disabled]="loading" class="btn btn-primary">Submit</button>
+                <button [disabled]="loading" (click)="previousStep()" class="btn btn-primary">Back</button>
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                 />
                 <!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->
@@ -131,8 +128,7 @@
                             />
                         </div>
                         <div class="form-group">
-                            <button *ngIf="mode !== 'View'" [disabled]="loading" (click)="previousStep()" class="btn btn-primary">Back</button>
-                            <button *ngIf="mode !== 'View'" [disabled]="loading" class="btn btn-primary">Submit</button>
+                            <button [disabled]="loading" (click)="previousStep()" class="btn btn-primary">Back</button>
                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                             />
                             <!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->

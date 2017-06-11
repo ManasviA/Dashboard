@@ -20,6 +20,14 @@ export class UserService {
         localStorage.setItem('tessol_user', JSON.stringify(user));
     }
 
+    getActivityLog(startdt:any, enddt:any, userId:string) {
+        return this.authHttp.post(CONTEXTROOT+"user/log",{
+            "from_timestamp":startdt,
+            "to_timestamp":enddt,
+            "email":userId || this.getCurrentUser().email
+        }).map((response: Response) => response.json());
+    }
+
     getCurrentUser(){
         return JSON.parse(localStorage.getItem('tessol_user'));
         //return this.subject.asObservable();
