@@ -10,6 +10,7 @@ import {DeviceListComponent} from '../device/deviceList.component';
 import {UserListComponent} from '../user/userlist.component';
 import { HistoryComponent } from '../history/history.component';
 import { ProfileComponent } from '../user/editprofile.component';
+import { ActivityComponent } from '../activity/activity.component';
 
 
 const myHomeRoutes: Routes = [
@@ -37,6 +38,8 @@ const myHomeRoutes: Routes = [
           },
           { path: 'history/:id', component: HistoryComponent  },
           { path: 'editprofile', component: ProfileComponent  },
+          //{ path:'activity', component: ActivityComponent  },
+          { path:'activity/:id?', component: ActivityComponent  },          
           { path: '**', component: DashboardComponent }
         ],
       }

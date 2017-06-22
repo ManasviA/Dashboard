@@ -134,7 +134,7 @@ Released under the MIT license: http://jsbin.mit-license.org
     }
     var devdata;
 
-    $.post('/svc/core/api/device/history/json'+'?token='+getParameterByName("token"),{
+    $.post('/svc/core/api/device/history/json'+'?token='+getParameterByName("token")+'&report=true',{
       "device_id":getParameterByName("id"),
       "from_timestamp":getParameterByName("from"),
       "to_timestamp":getParameterByName("to")

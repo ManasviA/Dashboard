@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpModule } from '@angular/http';
@@ -26,13 +27,14 @@ import {DeviceListComponent} from '../device/deviceList.component';
 import {SearchPipe} from '../dashboard/search.pipe';
 import { ModalModule } from 'ng2-bootstrap';
 import { HistoryComponent } from '../history/history.component';
+import { ActivityComponent } from '../activity/activity.component';
 import { DatepickerModule } from 'ng2-bootstrap';
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 
 @NgModule({
   imports: [BrowserModule, HttpModule,Ng2TableModule,PaginationModule.forRoot(),ModalModule.forRoot(),DropdownModule.forRoot(),TabsModule.forRoot(), DatepickerModule.forRoot(), NKDatetimeModule, MyHomeRoutingModule, SideBarModule, TopNavModule, FooterModule, SharedModule.forRoot()],
-  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe,HistoryComponent, ProfileComponent],
-  providers: [],
+  declarations: [MyHomeComponent,DashboardComponent,Collapse,DbGridComponent,DbColumnComponent,DbHeaderComponent,DbDetailComponent,RegisterComponent,DeviceRegisterComponent,DeviceListComponent,UserListComponent,SearchPipe,HistoryComponent, ProfileComponent, ActivityComponent],
+  providers: [DatePipe],
   bootstrap: [MyHomeComponent]
 
 })
