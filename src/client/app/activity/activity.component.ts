@@ -41,6 +41,7 @@ export class ActivityComponent implements OnInit {
   dateEntered: boolean = false;
   private loading: any;
   date: Date;
+  userId:string;
   public columns: Array<any> = [
     { title: 'Time', name: 'created_at' },
     { title: 'Activity', name: 'activity' }
@@ -55,6 +56,10 @@ export class ActivityComponent implements OnInit {
 
   ngOnInit() {
     (this.startdt = new Date()).setHours(this.startdt.getHours() - 24);
+    this.route.params
+          .subscribe((params: Params) => {
+              this.userId=params['id'] || this.userService.getCurrentUser().email;
+          })    
   }
 
   startOpen(): void {
@@ -93,7 +98,7 @@ export class ActivityComponent implements OnInit {
   getData(): void {
     this.dateEntered = true;
     this.loading = true;
-    this.userService.getActivityLog((new Date(this.startdt)).toISOString(), (new Date(this.enddt)).toISOString())
+    this.userService.getActivityLog((new Date(this.startdt)).toISOString(), (new Date(this.enddt)).toISOString(), this.userId)
       .subscribe((data: any) => {
         this.data = data;
         this.rows = data.map((log: ActivityLog) => {

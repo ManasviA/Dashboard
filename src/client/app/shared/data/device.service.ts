@@ -25,6 +25,14 @@ export class DeviceService {
         return this.authHttp.post(CONTEXTROOT+'device/add', device).map((response: Response) => response.json());
     }
 
+    edit(device: Device) {
+        return this.authHttp.post(CONTEXTROOT+'device/update', device).map((response: Response) => response.json());
+    }
+
+    getDeviceConfig(id:string) {
+       return this.authHttp.post(CONTEXTROOT+'device/config', {id:id}).map((response: Response) => response.json());
+    }
+
     delete(deviceId: string) {
         return this.authHttp.post(CONTEXTROOT+'device/remove', {id:deviceId}).map((response: Response) => response.json());
     }

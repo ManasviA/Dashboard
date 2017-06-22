@@ -11,14 +11,14 @@ import 'rxjs/add/operator/delay';
 import { UserService } from '../shared/data/user.service';
 import { AlertService } from '../shared/data/alert.service';
 import { CONTEXTROOT } from '../shared/contextRoot';
-
+import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 
 @Injectable()
 export class AuthService {
 
   redirectUrl: string;
 
-  constructor(private http: Http,private userService:UserService,private alertService:AlertService) {}
+  constructor(private http: Http,private userService:UserService,private alertService:AlertService, private authHttp:AuthHttp) {}
 
   login(credentials:any) {
     return this.http.post(CONTEXTROOT+'authenticate', credentials)
@@ -40,7 +40,14 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('id_token'); 
+    this.authHttp.post(CONTEXTROOT+'logout',{})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+        },
+        error => {
+        }
+      );
+      localStorage.removeItem('id_token');
   }
-
 }

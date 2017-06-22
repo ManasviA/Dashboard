@@ -1,1 +1,1 @@
-export let CONTEXTROOT="http://tessol.dev/svc/core/api/";
+export let CONTEXTROOT="/svc/core/api/";
