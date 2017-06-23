@@ -39,9 +39,9 @@ export class UserListComponent implements OnInit {
     {title: 'Location', name: 'location'},
     {title: 'Role', name: 'role'},
     {title: 'Devices', name: 'deviceString'},
-    {title: 'Action', name: 'actionString'},
-    {title: '', name:'deleteActionString'},
-    {title: '', name:'viewLogActionString'}
+    {title: 'Assign Devices', name: 'actionString'},
+    {title: 'Delete User', name:'deleteActionString'},
+    {title: 'View User Log', name:'viewLogActionString'}
    ];
   public config:any = {
     paging: true,

@@ -18,9 +18,10 @@
                 <input type="text" [disabled]="mode=='View'" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
                 <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
             </div>
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !vn.valid }">
                 <label for="vn">Vehicle Number</label>
-                <input type="text" [disabled]="mode=='View'" class="form-control" name="vn" [(ngModel)]="model.vehicle_no" #vn="ngModel" />
+                <input type="text" [disabled]="mode=='View'" class="form-control" name="vn" [(ngModel)]="model.vehicle_no" #vn="ngModel" required />
+                <div *ngIf="f.submitted && !vn.valid" class="help-block">Vehicle Number is required</div>
             </div>
             <div class="form-group">
                 <label for="driver">Driver</label>
