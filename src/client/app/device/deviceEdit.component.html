@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label for="sim_no">Timezone</label>
                 <!--<input type="text" [disabled]="mode=='View'" class="form-control" name="timezone" [(ngModel)]="model.timezone" />-->
-<select [(ngModel)]="model.timezone" [disabled]="mode=='View'" name="timezone">
+<select [(ngModel)]="model.timezone" class="form-control" [disabled]="mode=='View'" name="timezone">
   <option *ngFor="let c of getTimeZones()" [ngValue]="c">{{c}}</option>
 </select>
             </div>
