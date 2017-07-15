@@ -22,10 +22,10 @@
         <i title="CT Fail" *ngIf="data.payload.fi=='Yes'" class="fa fa-question-circle-o" aria-hidden="true" ></i>
         <i title="Overload" *ngIf="data.payload.fj=='Yes'" class="fa fa-toggle-up" aria-hidden="true" ></i>
         <i title="Underload" *ngIf="data.payload.fk=='Yes'" class="fa fa-toggle-down" aria-hidden="true" ></i>
-        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>=0 && data.payload.gs<=25" class="dbicon signal1" aria-hidden="true" ></div>
-        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>25 && data.payload.gs<=50" class="dbicon signal2" aria-hidden="true" ></div>
-        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>50 && data.payload.gs<=75" class="dbicon signal3" aria-hidden="true"></div>
-        <div title="GSM Signal Strength:{{data.payload.gs}}" *ngIf="data.payload.gs>75 && data.payload.gs<=100" class="dbicon signal4" aria-hidden="true"></div>
+        <div title="GSM Signal Strength:Low" *ngIf="data.payload.gs>=0 && data.payload.gs<=9" class="dbicon signal1" aria-hidden="true" ></div>
+        <div title="GSM Signal Strength:OK" *ngIf="data.payload.gs>9 && data.payload.gs<=14" class="dbicon signal2" aria-hidden="true" ></div>
+        <div title="GSM Signal Strength:Good" *ngIf="data.payload.gs>14 && data.payload.gs<=19" class="dbicon signal3" aria-hidden="true"></div>
+        <div title="GSM Signal Strength:Excellent" *ngIf="data.payload.gs>19 && data.payload.gs<=30" class="dbicon signal4" aria-hidden="true"></div>
 
         <!--<i title="Fan 1 On" *ngIf="data.payload.f1=='Yes'" class="fa fa-asterik" aria-hidden="true"></i>-->
     </div>

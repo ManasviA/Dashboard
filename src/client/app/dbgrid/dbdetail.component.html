@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5"><strong>GSM Signal</strong></div>
-        <div class="col-sm-5">{{data.payload.gs}} %</div>
+        <div class="col-sm-5">{{data.payload.gs>9?data.payload.gs>14?data.payload.gs>19?"Excellent":"Good":"OK":"Low"}}</div>
         <div class="col-sm-1"></div>
     </div>
     <div class="row">
