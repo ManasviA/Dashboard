@@ -150,7 +150,7 @@ viewHistory() {
                       row.userString="";
                       row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
                       row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-                      row.historyString="<a class=\"btn btn-primary btn-sm\" (click)=\"viewHistory()\">View History{{test}}</a>";
+                      row.historyString="<a class=\"btn btn-primary btn-sm\" >View History</a>";
                       row.viewConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >View Config</a>";
                       row.editConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >Edit Config</a>";
                       return row;
