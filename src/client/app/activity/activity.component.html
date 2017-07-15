@@ -45,7 +45,7 @@
             </div>
         </div>
         <br>
-        <ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+        <ng-table [config]="config" [rows]="rows" [columns]="columns">
         </ng-table>
         <div class="row">
             <div class="col-sm-2" *ngIf="config.paging"><br/>Page: {{page}} / {{numPages}}</div>
