@@ -70,6 +70,10 @@ export class DeviceRegisterComponent implements OnInit{
             );
     }
 
+    getTimeZones() {
+        return this.deviceService.getTimezones();
+    }
+
     nextStep() {
         this.step++;
     }

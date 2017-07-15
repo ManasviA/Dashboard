@@ -57,6 +57,10 @@ export class DeviceService {
         return this.authHttp.get(CONTEXTROOT+"device/history").map((response: Response) => response.json());
     }
 
+    getTimezones() {
+        return this.authHttp.get("timezone.json").map((response: Response) => response.json());
+    }
+
     getHistoryForDb(id:string, startdt:any, enddt:any) {
         return this.authHttp.post(CONTEXTROOT+"device/history/json",{
             "device_id":id,

@@ -61,6 +61,10 @@ export class DeviceEditComponent implements OnInit{
             this.model.geofence_enabled = "false";
     }
 
+    getTimeZones() {
+        return this.deviceService.getTimezones();
+    }
+
     getDeviceConfig(id:string) {
         this.deviceService.getDeviceConfig(id)
             .subscribe(
