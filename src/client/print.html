@@ -274,9 +274,9 @@ Released under the MIT license: http://jsbin.mit-license.org
 
 
      var trs=data.historic_logs.map(function(data,index){
-         return "<tr><td>"+(index+1)+"</td><td>"+data.created_at+"</td><td>"+data.payload.rt+"</td><td>"+data.payload.pt+"</td><td>"+data.payload.ct+"</td><td></td></tr>";
+         return "<tr><td>"+(index+1)+"</td><td>"+data.created_at+"</td><td>"+data.payload.address+"</td><td>"+data.payload.rt+"</td><td>"+data.payload.pt+"</td><td>"+data.payload.ct+"</td><td></td></tr>";
      });
-     trs.unshift("<tr><th>NO</th><th>DEVICE TIMESTAMP</th><th>ROOM TEMP (&deg;C)</th><th>PLATE TEMP (&deg;C)</th><th>CD TEMP (&deg;C)</th><th>REMARKS</th></tr>")
+     trs.unshift("<tr><th>NO</th><th>DEVICE TIMESTAMP</th><th>ADDRESS</th><th>ROOM TEMP (&deg;C)</th><th>PLATE TEMP (&deg;C)</th><th>CD TEMP (&deg;C)</th><th>REMARKS</th></tr>")
 
      var table=$('<table class="table"/>').html(trs.join(""));
      $("#dev_table").append(table);
