@@ -191,11 +191,13 @@ viewHistory() {
     this.userType=this.userService.getCurrentUser().user_detail.role;
     if(this.userType==="admin") {
       this.columns.push({title: 'Users', name: 'userString'});
-      this.columns.push({title: 'Delete Device', name: 'actionString'});
-      this.columns.push({title: 'View History', name: 'historyString'});
     }
+    this.columns.push({title: 'View History', name: 'historyString'});
     this.columns.push({title: 'View Configuration', name: 'viewConfigString'});
-    this.columns.push({title: 'Edit Configuration', name: 'editConfigString'});
+    if(this.userType==="admin") {
+      this.columns.push({title: 'Edit Configuration', name: 'editConfigString'});
+      this.columns.push({title: 'Delete Device', name: 'actionString'});
+    }
     this.deviceService.getAllDevices().subscribe(data=>{
         vm.data=data.map((row:any)=>{
             row.userString="";
