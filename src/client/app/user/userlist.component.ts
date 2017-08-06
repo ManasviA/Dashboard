@@ -6,7 +6,6 @@ import { AlertService } from '../shared/data/alert.service';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 
-
 @Component({
   moduleId: module.id,
   selector: 'userlist',
@@ -39,9 +38,9 @@ export class UserListComponent implements OnInit {
     {title: 'Location', name: 'location'},
     {title: 'Role', name: 'role'},
     {title: 'Devices', name: 'deviceString'},
-    {title: 'Assign Devices', name: 'actionString'},
-    {title: 'Delete User', name:'deleteActionString'},
-    {title: 'View User Log', name:'viewLogActionString'}
+    {title: 'Assign Devices', name: 'actionString', button: true},
+    {title: 'View User Log', name:'viewLogActionString', button: true},
+    {title: 'Delete User', name:'deleteActionString', button: true, button_type: 'danger'}
    ];
   public config:any = {
     paging: true,
@@ -138,7 +137,6 @@ export class UserListComponent implements OnInit {
   }
 
   public onCellClick(data: any): any {
-    console.log(data);
     if(data.column==="actionString") {
       this.editUser=data.row;
       this.lgModal.show();
@@ -225,9 +223,9 @@ export class UserListComponent implements OnInit {
             row.mobile_number=row.user_detail.mobile_number;
             row.location=row.user_detail.location;
             row.role=row.user_detail.role;
-            row.actionString="<a class=\"btn btn-primary btn-sm\">Assign Devices</a>";
-            row.deleteActionString="<a class=\"btn btn-primary btn-sm\">Delete User</a>";
-            row.viewLogActionString = "<a class=\"btn btn-primary btn-sm\">View Activity Log</a>";
+            row.actionString="Assign Devices";
+            row.deleteActionString="Delete User";
+            row.viewLogActionString = "View Activity Log";
             return row;
         });
         this.onChangeTable(this.config);
@@ -252,9 +250,9 @@ export class UserListComponent implements OnInit {
             row.mobile_number=row.user_detail.mobile_number;
             row.location=row.user_detail.location;
             row.role=row.user_detail.role;
-            row.actionString="<a class=\"btn btn-primary btn-sm\">Assign Devices</a>";
-            row.deleteActionString="<a class=\"btn btn-primary btn-sm\">Delete User</a>";
-            row.viewLogActionString = "<a class=\"btn btn-primary btn-sm\">View Activity Log</a>";
+            row.actionString="Assign Devices";
+            row.deleteActionString="Delete User";
+            row.viewLogActionString = "View Activity Log";
             return row;
         });
         vm.onChangeTable(this.config);

@@ -8,7 +8,7 @@ import { MyHomeRoutingModule } from './myhome-routing.module';
 import { PaginationModule  } from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap';
 import { DropdownModule } from 'ng2-bootstrap';
-import { Ng2TableModule } from 'ng2-table/ng2-table';
+import { Ng2TableModule } from '../ngtable/ng-table-module';
 import { TopNavModule } from '../topnav/topnav.module';
 import { SideBarModule } from '../sidebar/sidebar.module';
 import { FooterModule } from '../footer/footer.module';

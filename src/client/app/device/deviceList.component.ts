@@ -50,9 +50,6 @@ export class DeviceListComponent implements OnInit {
     return data.slice(start, end);
   }
 
-viewHistory() {
-  console.log("View History");
-}
   public changeSort(data:any, config:any):any {
     if (!config.sorting) {
       return data;
@@ -136,7 +133,6 @@ viewHistory() {
   }
 
   public onCellClick(data: any): any {
-    console.log(data);
     if(data.column=="actionString") {
       if(confirm("Are you sure to delete the device?")) {
           this.deviceService.delete(data.row.id).subscribe(data=>{
@@ -149,10 +145,10 @@ viewHistory() {
               this.data=data.map((row:any)=>{
                       row.userString="";
                       row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
-                      row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-                      row.historyString="<a class=\"btn btn-primary btn-sm\" >View History</a>";
-                      row.viewConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >View Config</a>";
-                      row.editConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >Edit Config</a>";
+                      row.actionString="Delete Device";
+                      row.historyString="View History";
+                      row.viewConfigString="View Config";
+                      row.editConfigString="Edit Config";
                       return row;
                   });
                   this.onChangeTable(this.config);
@@ -192,20 +188,20 @@ viewHistory() {
     if(this.userType==="admin") {
       this.columns.push({title: 'Users', name: 'userString'});
     }
-    this.columns.push({title: 'View History', name: 'historyString'});
-    this.columns.push({title: 'View Configuration', name: 'viewConfigString'});
+    this.columns.push({title: 'View History', name: 'historyString', button: true});
+    this.columns.push({title: 'View Configuration', name: 'viewConfigString', button: true});
     if(this.userType==="admin") {
-      this.columns.push({title: 'Edit Configuration', name: 'editConfigString'});
-      this.columns.push({title: 'Delete Device', name: 'actionString'});
+      this.columns.push({title: 'Edit Configuration', name: 'editConfigString', button: true});
+      this.columns.push({title: 'Delete Device', name: 'actionString', button: true, button_type: 'danger'});
     }
     this.deviceService.getAllDevices().subscribe(data=>{
         vm.data=data.map((row:any)=>{
             row.userString="";
             row.userString=row.logins.map((login:any)=>login.user_detail.name).join(",");
-            row.actionString="<a class=\"btn btn-primary btn-sm\">Delete Device</a>";
-            row.historyString="<a class=\"btn btn-primary btn-sm btn-sm\">View History</a>";
-            row.viewConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >View Config</a>";
-            row.editConfigString="<a class=\"btn btn-primary btn-sm btn-sm\" >Edit Config</a>";
+            row.actionString="Delete Device";
+            row.historyString="View History";
+            row.viewConfigString="View Config";
+            row.editConfigString="Edit Config";
             return row;
         });
         vm.onChangeTable(this.config);
