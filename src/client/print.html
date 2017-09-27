@@ -243,7 +243,7 @@ Released under the MIT license: http://jsbin.mit-license.org
                 type: 'column',
                 yAxis: 1,
                 data: _(data.historic_logs).map(function(data) {
-                    return [new Date(data.created_at).getTime(),data.payload.do=="Yes"?1:0];
+                    return [new Date(data.created_at+"Z").getTime(),data.payload.do=="Yes"?1:0];
                 }).value(),
               
 
@@ -251,7 +251,7 @@ Released under the MIT license: http://jsbin.mit-license.org
                 name: 'Room Temp',
                 type: 'spline',
                 data: _(data.historic_logs).map(function(data) {
-                    return [new Date(data.created_at).getTime(),data.payload.rt];
+                    return [new Date(data.created_at+"Z").getTime(),data.payload.rt];
                 }).value(),
               
 
@@ -259,14 +259,14 @@ Released under the MIT license: http://jsbin.mit-license.org
                 name: 'Plate Temp',
                 type: 'spline',
                 data:  _(data.historic_logs).map(function(data) {
-                    return [new Date(data.created_at).getTime(),data.payload.pt];
+                    return [new Date(data.created_at+"Z").getTime(),data.payload.pt];
                 }).value(),
               
               }, {
                 name: 'Cd Temp',
                 type: 'spline',
                 data:  _(data.historic_logs).map(function(data) {
-                    return [new Date(data.created_at).getTime(),data.payload.ct];
+                    return [new Date(data.created_at+"Z").getTime(),data.payload.ct];
                 }).value(),
               
               }]
